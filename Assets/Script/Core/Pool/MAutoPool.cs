@@ -1,13 +1,13 @@
 #region << 版 本 注 释 >>
 /*----------------------------------------------------------------
  * 公司名称：TuYooGame
- * 命名空间：Assets.Script.Timer
- * 文件名：MTimer
+ * 命名空间：Assets.Script.Core.Pool
+ * 文件名：MAutoPool
  * 
  * 创建者：owlwisp
  * 电子邮箱：owlwisp@163.com
- * 创建时间：2022/4/24 15:23:59
- * 描述：定时器类
+ * 创建时间：2022/4/25 19:33:20
+ * 描述：会自动改变自己大小的缓冲池
  *
  * ---------------------------------------------------------------*/
 
@@ -15,12 +15,12 @@
 
 
 
-namespace Assets.Script.Timer
+namespace Assets.Script.Core.Pool
 {
     /// <summary>
-    /// MTimer 的摘要说明
+    /// MAutoPool 的摘要说明
     /// </summary>
-    internal class MTimer
+    internal class MAutoPool
     {
         #region <常量>
         #endregion <常量>
@@ -32,17 +32,15 @@ namespace Assets.Script.Timer
         #endregion <属性>
 
         #region <构造方法和析构方法>
-        public MTimer()
+        public MAutoPool()
         {
 
         }
 
-        ~MTimer()
+        ~MAutoPool()
         {
 
         }
-
-        
         #endregion <构造方法和析构方法>
 
         #region <方法>

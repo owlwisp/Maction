@@ -1,7 +1,7 @@
 #region << 版 本 注 释 >>
 /*----------------------------------------------------------------
  * 公司名称：TuYooGame
- * 命名空间：Assets.Script.Core
+ * 命名空间：Assets.Script.Core.Base
  * 文件名：MSingleton
  * 
  * 创建者：owlwisp
@@ -17,12 +17,12 @@
 
 using System;
 
-namespace Assets.Script.Core
+namespace Assets.Script.Core.Base
 {
     /// <summary>
     /// MSingleton 的摘要说明
     /// </summary>
-    public static class MSingleton<T>
+    public  class MSingleton<T>
     {
         #region <常量>
         #endregion <常量>
