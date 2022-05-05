@@ -2,7 +2,7 @@
 /*----------------------------------------------------------------
  * 公司名称：TuYooGame
  * 命名空间：Assets.Script.Code.Tree
- * 文件名：IScopeTreeNode
+ * 文件名：DeepTreeNode
  * 
  * 创建者：owlwisp
  * 电子邮箱：owlwisp@163.com
@@ -18,18 +18,19 @@
 namespace Assets.Script.Code.Tree
 {
  /// <summary>
-    /// 广度树之行节点
+    /// 深度树结点
     /// </summary>
-    public class IScopeTreeNode
+    public class DeepTreeNode
     {
         #region <属性>
+        IDeepTreeNode m_node;
+        IDeepTreeCondition m_condition;
+        List<DeepTreeNode> m_children;
         #endregion <属性>
 
         #region <方法>
         // 第一次创建出来 之后调用函数
-        public virtual void DoAction()
-        {
-        }
+        public void OnInit();
   
         #endregion <方法>
 

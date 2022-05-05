@@ -20,7 +20,7 @@ namespace Assets.Script.Engine.Effect.Condition
     /// <summary>
     /// effect 执行条件基类
     /// </summary>
-    public class EffectConditionBase : ICondition , IScopeTreeCondition
+    public class EffectConditionBase : ICondition , IDeepTreeCondition
     {
         #region <属性>
         

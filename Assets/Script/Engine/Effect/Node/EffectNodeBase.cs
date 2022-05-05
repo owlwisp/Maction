@@ -20,7 +20,7 @@ namespace Assets.Script.Engine.Effect.Node
     /// <summary>
     /// effect 执行结点基类
     /// </summary>
-    public class EffectNodeBase : INode , IScopeTreeNode
+    public class EffectNodeBase : INode , IDeepTreeNode
     {
         #region <属性>
         

@@ -2,11 +2,11 @@
 /*----------------------------------------------------------------
  * 公司名称：TuYooGame
  * 命名空间：Assets.Script.Code.Tree
- * 文件名：ScopeTreeNode
+ * 文件名：IDeepTreeCondition
  * 
  * 创建者：owlwisp
  * 电子邮箱：owlwisp@163.com
- * 创建时间：2022/5/5 17:39:23
+ * 创建时间：2022/5/5 16:09:23
  * 描述：
  *
  * ---------------------------------------------------------------*/
@@ -18,20 +18,16 @@
 namespace Assets.Script.Code.Tree
 {
  /// <summary>
-    /// 广度树结点
+    /// 深度树之行节点
     /// </summary>
-    public class ScopeTreeNode
+    public class IDeepTreeCondition
     {
         #region <属性>
-        EffectNodeBase m_node;
-        IScopeTreeCondition m_condition;
-        List<ScopeTreeNode> m_children;
         #endregion <属性>
 
         #region <方法>
         // 第一次创建出来 之后调用函数
-        public void OnInit();
-  
+        public virtual bool DoCheck();
         #endregion <方法>
 
         #region <事件>

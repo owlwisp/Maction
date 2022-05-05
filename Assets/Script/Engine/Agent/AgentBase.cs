@@ -23,6 +23,11 @@ namespace Assets.Script.Engine.Agent
     public class AgentBase : IAgent
     {
         #region <属性>
+        // 全局唯一id
+        public int Id { get; set; }
+        // 阵营
+        public AgentCampType Camp { get; set; }
+        
         #endregion <属性>
 
         #region <方法>
