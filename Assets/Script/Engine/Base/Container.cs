@@ -23,12 +23,34 @@ namespace Assets.Script.Engine.Base
     public class Container<T>
     {
         #region <属性>
+        //存储T的链表
+        private List<T> m_list = new List<T>();
+        //按照id存储列表的字典
+        private Dictionary<int, List<T>> m_dict = new Dictionary<int, List<T>>();
 
         #endregion <属性>
 
         #region <方法>
         // 第一次创建出来 之后调用函数
         public void OnInit();
+
+        // 通过id和T给字典和list增加元素
+        public void Add(T t,int id){
+            if(!m_dict.ContainsKey(id)){
+                m_dict.Add(id,new List<T>());
+            }
+            m_dict[id].Add(t);
+            m_list.Add(t);
+        }
+
+        // 通过id和T给字典和list删除元素
+        public void Remove(T t,int id){
+            if(m_dict.ContainsKey(id)){
+                m_dict[id].Remove(t);
+                m_list.Remove(t);
+            }
+        }
+
   
         #endregion <方法>
 

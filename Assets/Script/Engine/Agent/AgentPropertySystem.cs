@@ -1,12 +1,12 @@
 #region << 文 件 注 释 >>
 /*----------------------------------------------------------------
  * 公司名称：TuYooGame
- * 命名空间：Assets.Script.Code.Tree
- * 文件名：DeepTree
+ * 命名空间：Assets.Script.Engine.Agent
+ * 文件名：AgentPropertySystem
  * 
  * 创建者：owlwisp
  * 电子邮箱：owlwisp@163.com
- * 创建时间：2022/5/5 17:37:23
+ * 创建时间：2022/5/5 13:57:24
  * 描述：
  *
  * ---------------------------------------------------------------*/
@@ -15,29 +15,21 @@
 
 
 
-namespace Assets.Script.Code.Tree
+namespace Assets.Script.Engine.Agent
 {
- /// <summary>
-    /// 深度树
+    /// <summary>
+    /// 人物属性
     /// </summary>
-    public class DeepTree 
+    public class AgentPropertySystem
     {
         #region <属性>
-        // 根节点
-        private DeepTreeNode m_root;
+     
         #endregion <属性>
 
         #region <方法>
         // 第一次创建出来 之后调用函数
-        public void OnInit(){
-
-        }
-
-        // 执行深度树
-        public void Execute(){
-            m_root.Execute();
-        }
-
+        public void OnInit();
+  
         #endregion <方法>
 
         #region <事件>

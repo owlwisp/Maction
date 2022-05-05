@@ -33,5 +33,22 @@ namespace Assets.Script.Engine.Agent
     }
     #endregion <AgentCampType>
 
+    /// <summary>
+    /// agent 状态
+    /// </summary>
+    #region <AgentStateType>
+    public enum AgentStateType
+    {
+        // 死亡
+        kDead = 0,
+        // 活着
+        kAlive = 1,
+        // 临死
+        kDying = 2,
+        // 未知
+        kUnknow = 3,
+        
+    }
+
 
 }

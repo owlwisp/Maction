@@ -45,14 +45,37 @@ namespace Assets.Script.Engine.Effect
         List<int> EffectIds { get; set; }
 
         // 广度树 ScopeTree
-        ScopeTree ScopeTree { get; set; }
+        DeepTree Tree { get; set; }
 
         #endregion <属性>
 
         #region <方法>
         // 第一次创建出来 之后调用函数
-        public void OnInit();
-  
+        public void OnInit(){
+
+        }
+
+        //播放音乐
+        public void PlaySound()
+        {
+            // 播放音乐
+            // SoundIds
+        }
+    
+        //播放特效
+        public void PlayEffect()
+        {
+            // 播放特效
+            // EffectIds
+        }
+
+        //执行effect
+        public void Execute()
+        {
+            // 执行
+            Tree.Execute();
+        }
+
         #endregion <方法>
 
         #region <事件>

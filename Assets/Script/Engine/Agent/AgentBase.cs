@@ -28,11 +28,21 @@ namespace Assets.Script.Engine.Agent
         // 阵营
         public AgentCampType Camp { get; set; }
         
+        // 当前状态
+        public AgentStateType State { get; set; }
+
+        // 属性系统
+        public AgentPropertySystem PropertySystem { get; set; }
+
         #endregion <属性>
 
         #region <方法>
         // 第一次创建出来 之后调用函数
-        public void OnInit();
+        public void OnInit(){
+            // 初始化属性系统
+            PropertySystem = new AgentPropertySystem();
+            PropertySystem.OnInit();
+        }
   
         #endregion <方法>
 

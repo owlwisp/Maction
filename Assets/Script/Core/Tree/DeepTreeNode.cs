@@ -23,6 +23,8 @@ namespace Assets.Script.Code.Tree
     public class DeepTreeNode
     {
         #region <属性>
+        // 是否是条件节点
+        public bool IsConditionNode { get; set; }
         IDeepTreeNode m_node;
         IDeepTreeCondition m_condition;
         List<DeepTreeNode> m_children;
@@ -30,7 +32,28 @@ namespace Assets.Script.Code.Tree
 
         #region <方法>
         // 第一次创建出来 之后调用函数
-        public void OnInit();
+        public void OnInit(){
+
+        }
+
+        // 执行结点
+        public void Execute(){
+            if (IsConditionNode)
+            {
+                if (m_condition.IsTrue())
+                {
+                    foreach (var child in m_children)
+                    {
+                        child.Execute();
+                    }
+                }
+            }
+            else
+            {
+                m_node.DoAction();
+            }
+        }
+
   
         #endregion <方法>
 
