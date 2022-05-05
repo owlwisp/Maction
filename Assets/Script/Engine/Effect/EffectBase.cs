@@ -76,6 +76,31 @@ namespace Assets.Script.Engine.Effect
             Tree.Execute();
         }
 
+        // 启用
+        public void OnEnable()
+        {
+            // 启用
+        }
+
+        // 禁用
+        public void OnDisable()
+        {
+            // 关闭
+        }
+        // 中断处理
+        public void Interrupt()
+        {
+            // 中断处理
+        }
+        // 按帧更新
+        public void Tick()
+        {
+            // 更新深度树
+            Tree.Tick();
+            
+
+        }
+
         #endregion <方法>
 
         #region <事件>

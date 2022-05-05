@@ -33,6 +33,11 @@ namespace Assets.Script.Code.Tree
 
         }
 
+        // 遍历结点
+        public void Tick(){
+            m_root.Tick();
+        }
+
         // 执行深度树
         public void Execute(){
             m_root.Execute();

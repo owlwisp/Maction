@@ -54,6 +54,22 @@ namespace Assets.Script.Code.Tree
             }
         }
 
+        // 遍历结点
+        public void Tick(){
+            if (IsConditionNode)
+            {
+                if (m_condition.IsTrue())
+                {
+                    foreach (var child in m_children)
+                    {
+                        child.Tick();
+                    }
+                }
+            }
+            else{
+                m_node.Tick();
+            }
+        }
   
         #endregion <方法>
 

@@ -30,6 +30,11 @@ namespace Assets.Script.Code.Tree
         public virtual void DoAction()
         {
         }
+
+        // 遍历结点
+        public virtual void Tick()
+        {
+        }
   
         #endregion <方法>
 
