@@ -22,28 +22,43 @@ namespace Assets.Script.Core.Pool
     /// <summary>
     /// MPool 的摘要说明
     /// </summary>
-    public static class MPool<T> where T : IObject , new()
+    public class MPool<T> where T : IObject , new()
     {
         #region <常量>
         #endregion <常量>
 
         #region <变量>
         // 单例类
-        private static List<T> _pool;
+        private  List<T> _pool;
         #endregion <变量>
 
         #region <属性>
         #endregion <属性>
 
         #region <构造方法和析构方法>
+        // 单例模式实例
+        private static MPool<T> _instance;
+
+        public static MPool<T> Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = new MPool<T>();
+                }
+                return _instance;
+            }
+        }
+
         #endregion <构造方法和析构方法>
 
         #region <方法>
-        static public void Init(int capacity = 6)
+        public void Init(int capacity = 6)
         {
             _pool = new List<T>(capacity);
         }
-        public static  T Get()
+        public T Get()
         {
             T t;
             if (_pool.Count > 0)
@@ -62,13 +77,13 @@ namespace Assets.Script.Core.Pool
             return t;
         }
 
-        public static void Recycle(T t)
+        public void Recycle(T t)
         {
             t.OnDisable();
             _pool.Add(t);
         }
 
-        public static void Clear()
+        public void Clear()
         {
             foreach (var item in _pool)
             {

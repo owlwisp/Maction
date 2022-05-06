@@ -15,6 +15,8 @@
 
 
 
+using System.Collections.Generic;
+
 namespace Assets.Script.Code.Tree
 {
  /// <summary>
@@ -26,7 +28,6 @@ namespace Assets.Script.Code.Tree
         // 是否是条件节点
         public bool IsConditionNode { get; set; }
 
-        DeepTree m_tree;
         IDeepTreeNode m_node;
         IDeepTreeCondition m_condition;
         List<DeepTreeNode> m_children;
@@ -34,8 +35,7 @@ namespace Assets.Script.Code.Tree
 
         #region <方法>
         // 第一次创建出来 之后调用函数
-        public void OnInit(DeepTree tree){
-            m_tree = tree;
+        public void OnInit(){
             IsConditionNode = false;
         }
 
@@ -50,57 +50,57 @@ namespace Assets.Script.Code.Tree
         }
 
         // 执行结点
-        public void Execute(){
+        public void Execute(IDeepTreeAgent owner)
+        {
             if (IsConditionNode)
             {
-                if (m_condition.IsTrue(m_tree.GetOwner()))
+                if (m_condition.IsTrue(owner))
                 {
                     foreach (var child in m_children)
                     {
-                        child.Execute(m_tree.GetOwner());
+                        child.Execute(owner);
                     }
                 }
             }
             else
             {
-                m_node.Execute(m_tree.GetOwner());
+                m_node.Execute(owner);
             }
         }
 
         // 中断结点
-        public void Interrupt(){
+        public void Interrupt(IDeepTreeAgent owner)
+        {
             if (IsConditionNode)
             {
                 foreach (var child in m_children)
                 {
-                    child.Interrupt(m_tree.GetOwner());
+                    child.Interrupt(owner);
                 }
             }
             else
             {
-                m_node.Interrupt(m_tree.GetOwner());
+                m_node.Interrupt(owner);
             }
         }
 
         // 遍历结点
-        public void Tick(){
+        public void Tick(IDeepTreeAgent owner)
+        {
             if (IsConditionNode)
             {
-                if (m_condition.IsTrue(m_tree.GetOwner()))
+                if (m_condition.IsTrue(owner))
                 {
                     foreach (var child in m_children)
                     {
-                        if (child.IsTick())
-                        {
-                            child.Tick(m_tree.GetOwner());
-                        }
+                        child.Tick(owner);
                     }
                 }
             }
             else{
                 if (m_node.IsTick())
                 {
-                    m_node.Tick(m_tree.GetOwner());
+                    m_node.Tick(owner);
                 }
             }
         }

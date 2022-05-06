@@ -20,7 +20,7 @@ namespace Assets.Script.Code.Tree
  /// <summary>
     /// 深度树之行节点
     /// </summary>
-    public class IDeepTreeNode
+    public interface IDeepTreeNode
     {
         #region <属性>
         #endregion <属性>

@@ -61,14 +61,14 @@ namespace Assets.Script.Engine.Timer
         #region <方法>
         // delay为0 的时候为每一帧都执行一次
         public void Once(float delay, Action<float> func ){
-            var data = MPool<MTimerData>.Get();
+            var data = MPool<MTimerData>.Instance.Get();
             data.Init(delay, func);
             _timerLink.AddFirst(data);
         }
 
         // delay为0 的时候为每一帧都执行一次
         public void Repeat(float delay, Action<float> func , int Count = -1){
-            var data = MPool<MTimerData>.Get();
+            var data = MPool<MTimerData>.Instance.Get();
             data.Init(delay, func, Count);
             _timerLink.AddFirst(data);
         }
@@ -87,7 +87,7 @@ namespace Assets.Script.Engine.Timer
                     data.Callback(deltaTime);
                    if(data.Count == 0)
                     {
-                        MPool<MTimerData>.Recycle(data);
+                        MPool<MTimerData>.Instance.Recycle(data);
                         _timerLink.Remove(node);
                     }
                     else

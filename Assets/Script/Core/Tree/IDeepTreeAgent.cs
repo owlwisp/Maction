@@ -15,15 +15,18 @@
 
 
 
+using System;
+
 namespace Assets.Script.Code.Tree
 {
- /// <summary>
+    
+    /// <summary>
     /// 深度树之行节点
     /// </summary>
-    public class IDeepTreeAgent
+    public interface IDeepTreeAgent
     {
         #region <属性>
-        public Action<IDeepTreeAgent,int > GetDeepTreeAgentDelegate;
+        public delegate IDeepTreeAgent GetDeepTreeAgentDelegate(int id);
         #endregion <属性>
 
         #region <方法>

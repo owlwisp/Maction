@@ -15,6 +15,10 @@
 
 
 
+using Assets.Script.Core.Pool;
+using Assets.Script.Engine.Formula;
+using Assets.Script.Engine.Internal;
+
 namespace Assets.Script.Engine.Agent
 {
     /// <summary>
@@ -56,11 +60,11 @@ namespace Assets.Script.Engine.Agent
         }
         // 是否活着
         public bool IsAlive(){
-            return State == AgentStateType.Alive;
+            return State == AgentStateType.kAlive;
         }
 
         // 是否生效
-        static bool IsValid(AgentBase agent){
+        public static bool IsValid(AgentBase agent){
             return agent != null && agent.IsAlive();
         }
         // 是否是同一阵营
@@ -73,19 +77,14 @@ namespace Assets.Script.Engine.Agent
         {
             return Camp == camp;
         }
-        // 增加属性
-        public void AddProperty(AgentPropertyType propertyType, int value){
-
-            PropertySystem.AddProperty(propertyType, value);
-        }
 
         public DamageData GetDamageDataForAttacker(){
-            var data = MPool<DamageData>.Get();
+            var data = MPool<DamageData>.Instance.Get();
             return data;
         }
 
         public DamageData GetDamageDataForDefender(){
-            var data = MPool<DamageData>.Get();
+            var data = MPool<DamageData>.Instance.Get();
             return data;
         }
 

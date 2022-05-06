@@ -15,6 +15,8 @@
 
 
 
+using static Assets.Script.Code.Tree.IDeepTreeAgent;
+
 namespace Assets.Script.Code.Tree
 {
     /// <summary>
@@ -40,7 +42,7 @@ namespace Assets.Script.Code.Tree
             m_ownerId = target.GetDeepTreeAgentId();
             m_delegate = target.GetDeepTreeAgent();
             m_root = new DeepTreeNode();
-            m_root.OnInit(this);
+            m_root.OnInit();
         }
 
         public IDeepTreeAgent GetOwner(){
@@ -50,20 +52,20 @@ namespace Assets.Script.Code.Tree
         // 遍历结点
         public void Tick(){
             if(m_tickEnable){
-                m_root.Tick();
+                m_root.Tick(GetOwner());
             }
         }
 
         // 执行深度树
         public void Execute(){
-            m_root.Execute();
+            m_root.Execute(GetOwner());
             m_tickEnable = true;
         }
 
         // 中断效果
         public void Interrupt(){
             m_tickEnable = false;
-            m_root.Interrupt();
+            m_root.Interrupt(GetOwner());
         }
 
         #endregion <方法>

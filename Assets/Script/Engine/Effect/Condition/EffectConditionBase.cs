@@ -15,6 +15,9 @@
 
 
 
+using Assets.Script.Code.Tree;
+using Assets.Script.Engine.Internal;
+
 namespace Assets.Script.Engine.Effect.Condition
 {
     /// <summary>
@@ -33,6 +36,11 @@ namespace Assets.Script.Engine.Effect.Condition
             Type = EffectConditionType.kNone;
         }
 
+        public void Execute(IDeepTreeAgent owner)
+        {
+
+        }
+
         // 获取类型
         public EffectConditionType GetType()
         {
@@ -43,6 +51,9 @@ namespace Assets.Script.Engine.Effect.Condition
         {
             return false;
         }
+
+
+
         #endregion <方法>
 
         #region <事件>

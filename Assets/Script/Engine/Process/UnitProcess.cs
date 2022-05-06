@@ -15,6 +15,9 @@
 
 
 
+using Assets.Script.Core.Pool;
+using Assets.Script.Engine.Formula;
+
 namespace Assets.Script.Engine.Process
 {
     /// <summary>
@@ -27,11 +30,11 @@ namespace Assets.Script.Engine.Process
 
         #region <方法>
         public static void OnInit(){
-            MPool<DamageData>.Init(12);
+            MPool<DamageData>.Instance.Init(12);
         }
 
         public static void OnDestroy(){
-            MPool<DamageData>.Clear();
+            MPool<DamageData>.Instance.Clear();
         }
         
         #endregion <方法>

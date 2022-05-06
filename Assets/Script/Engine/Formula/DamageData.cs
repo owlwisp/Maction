@@ -15,6 +15,10 @@
 
 
 
+using System.Collections.Generic;
+using Assets.Script.Core.Pool;
+using Assets.Script.Engine.Agent;
+
 namespace Assets.Script.Engine.Formula
 {
     /// <summary>

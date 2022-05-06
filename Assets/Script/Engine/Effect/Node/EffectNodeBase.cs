@@ -15,6 +15,9 @@
 
 
 
+using Assets.Script.Code.Tree;
+using Assets.Script.Engine.Internal;
+
 namespace Assets.Script.Engine.Effect.Node
 {
     /// <summary>
@@ -45,7 +48,7 @@ namespace Assets.Script.Engine.Effect.Node
         public void OnInit(){
 
 
-            m_tick = Count != 0;
+            m_isTick = Count != 0;
             Type = EffectNodeType.kNone;
         }
 
@@ -74,7 +77,7 @@ namespace Assets.Script.Engine.Effect.Node
 
         public virtual bool IsTick()
         {
-            return m_tick;
+            return m_isTick;
         }
         public virtual void Tick(IDeepTreeAgent owner)
         {

@@ -15,12 +15,17 @@
 
 
 
+using System.Collections.Generic;
+using Assets.Script.Code.Tree;
+using Assets.Script.Engine.Base;
+using Assets.Script.Engine.Internal;
+
 namespace Assets.Script.Engine.Effect
 {
     /// <summary>
     /// effect 基类
     /// </summary>
-    public class EffectBase : IEffect ,IDeepTreeAgent
+    public class EffectBase : IEffect , IDeepTreeAgent
     {
         #region <属性>
         // 全局id
@@ -32,9 +37,9 @@ namespace Assets.Script.Engine.Effect
         // 合并方式
         EffectMergeType MergeType { get; set; }
         // 优先级
-        int Priority { get; set; }
+        public int Priority { get; set; }
         //  拥有者id
-        int OwnerId { get; set; }
+        public int OwnerId { get; set; }
         // 音效id 链表
         List<int> SoundIds { get; set; }
         // 特效id 链表
@@ -47,10 +52,7 @@ namespace Assets.Script.Engine.Effect
         DeepTree Tree { get; set; }
 
         // 目标id
-        int TargetId { get; set; }
-
-        // 拥有者id
-        int OwnerId { get; set; }
+        public int TargetId { get; set; }
 
         // 这块还需要在多考虑下
         // 目标互斥列表
@@ -73,9 +75,11 @@ namespace Assets.Script.Engine.Effect
             return Id;
         }
 
-        public IDeepTreeAgent GetDeepTreeAgent()
+
+
+        public IDeepTreeAgent.GetDeepTreeAgentDelegate GetDeepTreeAgent()
         {
-            return delegate(int id)
+            return delegate (int id)
             {
                 return Container<EffectBase>.Instance.Get(id);
             };
@@ -153,7 +157,7 @@ namespace Assets.Script.Engine.Effect
         }
 
         // 重置
-        void ResetEffect()
+        void ResetEffect(EffectBase effect)
         {
             // 重置
        
@@ -173,6 +177,7 @@ namespace Assets.Script.Engine.Effect
 
 
         }
+
 
         #endregion <方法>
 

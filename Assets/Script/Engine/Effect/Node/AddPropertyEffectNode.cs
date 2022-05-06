@@ -15,6 +15,10 @@
 
 
 
+using Assets.Script.Code.Tree;
+using Assets.Script.Engine.Agent;
+using Assets.Script.Engine.Base;
+
 namespace Assets.Script.Engine.Effect.Node
 {
     /// <summary>
@@ -45,7 +49,8 @@ namespace Assets.Script.Engine.Effect.Node
         }
         public override void DoAction(IDeepTreeAgent owner)
         {
-            var target = Container<ActionBase>.Instance.Get(owner.TargetId);
+            var effect = owner as EffectBase;
+            var target = Container<AgentBase>.Instance.Get(effect.TargetId);
             if (target == null)
             {
                 return;
@@ -55,10 +60,11 @@ namespace Assets.Script.Engine.Effect.Node
         }
 
 
-        public override Interrupt(IDeepTreeAgent owner)
+        public override void Interrupt(IDeepTreeAgent owner)
         {
             base.Interrupt(owner);
-            var target = Container<ActionBase>.Instance.Get(owner.TargetId);
+            var effect = owner as EffectBase;
+            var target = Container<AgentBase>.Instance.Get(effect.TargetId);
             if (target == null)
             {
                 return;

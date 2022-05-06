@@ -15,6 +15,8 @@
 
 
 
+using System.Collections.Generic;
+
 namespace Assets.Script.Engine.Agent
 {
     /// <summary>
@@ -38,14 +40,39 @@ namespace Assets.Script.Engine.Agent
         {
             if (m_propertyDict.ContainsKey(type))
             {
-                m_propertyDict[type].Add(property);
+                m_propertyDict[type].Add(property.Value);
             }
             else
             {
                 m_propertyDict.Add(type, property);
             }
         }
-  
+
+        // 增加属性
+        public void AddProperty(AgentPropertyType type, int value)
+        {
+            if (m_propertyDict.ContainsKey(type))
+            {
+                m_propertyDict[type].Add(value);
+            }
+            else
+            {
+                //todo 这里需要修改
+                var property = new AgentProperty();
+                m_propertyDict.Add(type, property);
+            }
+        }
+
+        // 获取属性
+        public AgentProperty GetProperty(AgentPropertyType type)
+        {
+            if (m_propertyDict.ContainsKey(type))
+            {
+                return m_propertyDict[type];
+            }
+            return null;
+        }
+        
         // 清理
         public void OnClear(){
             m_propertyDict.Clear();

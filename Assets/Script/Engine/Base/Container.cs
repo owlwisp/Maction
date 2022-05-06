@@ -15,6 +15,8 @@
 
 
 
+using System.Collections.Generic;
+
 namespace Assets.Script.Engine.Base
 {
     /// <summary>
@@ -23,6 +25,7 @@ namespace Assets.Script.Engine.Base
     public class Container<T>
     {
         #region <属性>
+        private static Container<T> m_instance;
         //存储T的链表
         private List<T> m_list = new List<T>();
         //按照id存储列表的字典
@@ -32,7 +35,24 @@ namespace Assets.Script.Engine.Base
 
         #region <方法>
         // 第一次创建出来 之后调用函数
-        public void OnInit();
+        public void OnInit()
+        {
+
+        }
+
+        //单例模式实例
+        
+        public static Container<T> Instance
+        {
+            get
+            {
+                if (m_instance == null)
+                {
+                    m_instance = new Container<T>();
+                }
+                return m_instance;
+            }
+        }
 
         // 通过id和T给字典和list增加元素
         public void Add(T t,int id){
@@ -49,6 +69,16 @@ namespace Assets.Script.Engine.Base
                 m_dict[id].Remove(t);
                 m_list.Remove(t);
             }
+        }
+
+        // 获取对象
+        public T Get(int id){
+            if(m_dict.ContainsKey(id)){
+                if(m_dict[id].Count > 0){
+                    return m_dict[id][0];
+                }
+            }
+            return default(T);
         }
 
   

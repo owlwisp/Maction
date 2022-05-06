@@ -15,6 +15,10 @@
 
 
 
+using Assets.Script.Code.Tree;
+using Assets.Script.Engine.Agent;
+using Assets.Script.Engine.Base;
+
 namespace Assets.Script.Engine.Effect.Condition
 {
     /// <summary>
@@ -24,7 +28,7 @@ namespace Assets.Script.Engine.Effect.Condition
     {
         #region <属性>
         // 阵营
-        private CampType m_campType;
+        private AgentCampType m_campType;
         
         #endregion <属性>
 
@@ -32,16 +36,25 @@ namespace Assets.Script.Engine.Effect.Condition
         // 第一次创建出来 之后调用函数
         public void OnInit(){
             Type = EffectConditionType.kSelfCamp;
-            var owner = Container<ActionBase>.Instance.Get(owner.OwnerId);
+
+        }
+
+        public void Execute(IDeepTreeAgent owner)
+        {
+            base.Execute(owner);
+
+            var effect = owner as EffectBase;
+            var agent = Container<AgentBase>.Instance.Get(effect.OwnerId);
             if (owner != null)
             {
-                m_campType = owner.CampType;
+                m_campType = agent.Camp;
             }
         }
-  
+
         public bool IsTrue(IDeepTreeAgent owner)
         {
-            var target = Container<ActionBase>.Instance.Get(owner.TargetId);
+            var effect = owner as EffectBase;
+            var target = Container<AgentBase>.Instance.Get(effect.OwnerId);
 
             return AgentBase.IsValid(target) && target.IsSameCamp(m_campType);
         }

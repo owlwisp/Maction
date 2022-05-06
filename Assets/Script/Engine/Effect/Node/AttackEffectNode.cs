@@ -15,6 +15,12 @@
 
 
 
+using Assets.Script.Code.Tree;
+using Assets.Script.Core.Pool;
+using Assets.Script.Engine.Agent;
+using Assets.Script.Engine.Base;
+using Assets.Script.Engine.Formula;
+
 namespace Assets.Script.Engine.Effect.Node
 {
     /// <summary>
@@ -39,25 +45,27 @@ namespace Assets.Script.Engine.Effect.Node
         {
             base.Execute(owner);
 
-            var owner = Container<ActionBase>.Instance.Get(owner.OwnerId);
+            var effect = owner as EffectBase;
+            var agent = Container<AgentBase>.Instance.Get(effect.OwnerId);
             if (owner == null)
             {
                 return;
             }
-            var property = owner.GetProperty(AgentPropertyType.kAttack);
+            var property = agent.GetProperty(AgentPropertyType.kAttack);
             m_attack = property.Value;
         }
         public override void DoAction(IDeepTreeAgent owner)
         {
-            var target = Container<ActionBase>.Instance.Get(owner.TargetId);
+            var effect = owner as EffectBase;
+            var target = Container<AgentBase>.Instance.Get(effect.TargetId);
             if (target == null)
             {
                 return;
             }
 
             var defenderData = target.GetDamageDataForDefender();
-            var attackerData = MPool<DamageData>.Get();
-            data.AddProperty(AgentPropertyType.kAttack,m_attack);
+            var attackerData = MPool<DamageData>.Instance.Get();
+            attackerData.AddProperty(AgentPropertyType.kAttack,m_attack);
             
             // todo:这里有待商榷
             var damage = DamageFormula.Calculations( attackerData, defenderData);
@@ -65,7 +73,7 @@ namespace Assets.Script.Engine.Effect.Node
         }
 
         
-        public override Interrupt(IDeepTreeAgent owner)
+        public override void Interrupt(IDeepTreeAgent owner)
         {
             base.Interrupt(owner);
         }

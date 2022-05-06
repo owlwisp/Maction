@@ -1,40 +1,34 @@
 #region << 文 件 注 释 >>
 /*----------------------------------------------------------------
  * 公司名称：TuYooGame
- * 命名空间：Assets.Script.Engine.Action
- * 文件名：ActionBase
+ * 命名空间：Assets.Script.Engine.Internal
+ * 文件名：IAction
  * 
  * 创建者：owlwisp
  * 电子邮箱：owlwisp@163.com
- * 创建时间：2022/5/5 13:57:24
+ * 创建时间：2022/5/5 18:57:20
  * 描述：
  *
  * ---------------------------------------------------------------*/
 
 #endregion << 文 件 注 释 >>
 
-using Assets.Script.Engine.Internal;
 
-namespace Assets.Script.Engine.Action
+
+namespace Assets.Script.Engine.Internal
 {
     /// <summary>
-    /// Action 动作
+    /// 动作代理接口
     /// </summary>
-    public class ActionBase : IAction
+    public interface IAction
     {
         #region <属性>
-        
         #endregion <属性>
 
         #region <方法>
         // 第一次创建出来 之后调用函数
-        public void OnInit()
-        {
-
-        }
+        public void OnInit();
   
-
-
         #endregion <方法>
 
         #region <事件>

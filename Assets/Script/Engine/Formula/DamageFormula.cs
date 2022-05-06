@@ -27,8 +27,8 @@ namespace Assets.Script.Engine.Formula
 
         #region <方法>
         // 第一次创建出来 之后调用函数
-        public static int Calculations(AttackerData attacker, DefenderData defender){
-
+        public static int Calculations(DamageData attacker, DamageData defender){
+            return 0;
         }
   
         #endregion <方法>

@@ -15,6 +15,9 @@
 
 
 
+using Assets.Script.Code.Tree;
+using Assets.Script.Engine.Effect;
+
 namespace Assets.Script.Engine.Internal
 {
     /// <summary>
@@ -28,7 +31,7 @@ namespace Assets.Script.Engine.Internal
         #region <方法>
         // 获取类型
         public EffectNodeType GetType();
-        public void DoAction();
+        public void DoAction(IDeepTreeAgent owner);
         #endregion <方法>
 
         #region <事件>

@@ -20,7 +20,7 @@ namespace Assets.Script.Engine.Internal
     /// <summary>
     /// effect接口
     /// </summary>
-    public interface ICondition
+    public interface IEffect
     {
         #region <属性>
         #endregion <属性>

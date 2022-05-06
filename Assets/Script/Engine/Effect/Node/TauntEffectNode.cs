@@ -15,6 +15,8 @@
 
 
 
+using Assets.Script.Code.Tree;
+
 namespace Assets.Script.Engine.Effect.Node
 {
     /// <summary>
@@ -44,7 +46,7 @@ namespace Assets.Script.Engine.Effect.Node
         }
 
         
-        public override Interrupt(IDeepTreeAgent owner)
+        public override void Interrupt(IDeepTreeAgent owner)
         {
             base.Interrupt(owner);
         }

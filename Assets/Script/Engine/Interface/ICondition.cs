@@ -15,6 +15,9 @@
 
 
 
+using Assets.Script.Code.Tree;
+using Assets.Script.Engine.Effect;
+
 namespace Assets.Script.Engine.Internal
 {
     /// <summary>
@@ -26,10 +29,10 @@ namespace Assets.Script.Engine.Internal
         #endregion <属性>
 
         #region <方法>
-        // 第一次创建出来 之后调用函数
-        
-        public bool IsTrue();
-  
+ 
+        public bool IsTrue(IDeepTreeAgent owner);
+
+        public void Execute(IDeepTreeAgent owner);
         // 获取类型
         public EffectConditionType GetType();
         #endregion <方法>

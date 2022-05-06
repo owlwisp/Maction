@@ -15,6 +15,11 @@
 
 
 
+using Assets.Script.Code.Tree;
+using Assets.Script.Engine.Action;
+using Assets.Script.Engine.Agent;
+using Assets.Script.Engine.Base;
+
 namespace Assets.Script.Engine.Effect.Condition
 {
     /// <summary>
@@ -33,10 +38,12 @@ namespace Assets.Script.Engine.Effect.Condition
         public void OnInit(){
             Type = EffectConditionType.kLevel;
         }
+
   
         public bool IsTrue(IDeepTreeAgent owner)
         {
-            var target = Container<ActionBase>.Instance.Get(owner.TargetId);
+            EffectBase effect = owner as EffectBase;
+            AgentBase target = Container<AgentBase>.Instance.Get(effect.TargetId);
 
             return AgentBase.IsValid(target) && target.Level >= m_level;
         }
