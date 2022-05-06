@@ -46,6 +46,7 @@ namespace Assets.Script.Engine.Effect.Node
 
 
             m_tick = Count != 0;
+            Type = EffectNodeType.kNone;
         }
 
         // 获取类型

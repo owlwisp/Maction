@@ -28,6 +28,7 @@ namespace Assets.Script.Core.Pool
         #endregion <常量>
 
         #region <变量>
+        // 单例类
         private static List<T> _pool;
         #endregion <变量>
 
@@ -35,11 +36,6 @@ namespace Assets.Script.Core.Pool
         #endregion <属性>
 
         #region <构造方法和析构方法>
-
-        // 用静态方法 create 创建对象
-
-
-
         #endregion <构造方法和析构方法>
 
         #region <方法>

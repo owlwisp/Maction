@@ -153,9 +153,10 @@ namespace Assets.Script.Engine.Effect
         }
 
         // 重置
-        void ResetEffect(EffectBase effect)
+        void ResetEffect()
         {
             // 重置
+       
         }
 
         // 加

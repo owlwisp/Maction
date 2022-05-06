@@ -2,11 +2,11 @@
 /*----------------------------------------------------------------
  * 公司名称：TuYooGame
  * 命名空间：Assets.Script.Engine.Effect.Node
- * 文件名：AddPropertyEffectNode
+ * 文件名：AttackEffectNode
  * 
  * 创建者：owlwisp
  * 电子邮箱：owlwisp@163.com
- * 创建时间：2022/5/5 11:32:23
+ * 创建时间：2022/5/5 16:18:29
  * 描述：
  *
  * ---------------------------------------------------------------*/
@@ -18,30 +18,34 @@
 namespace Assets.Script.Engine.Effect.Node
 {
     /// <summary>
-    /// effect 增加属性结点
+    /// effect 攻击结点
     /// </summary>
-    public class AddPropertyEffectNode : EffectNodeBase
+    public class AttackEffectNode : EffectNodeBase
     {
         #region <属性>
-        // 属性
-        public AgentPropertyType Property { get; set; }
-        public int Value { get; set; }
-
-        // 增加属性次数
-        public int m_count ;
+        // 按照百分比算
+        public int Rate { get; set; }
+        private int m_attack;
         #endregion <属性>
 
         #region <方法>
         // 第一次创建出来 之后调用函数
         public void OnInit()
         {
-            Type = EffectNodeType.kAddProperty;
+            Type = EffectNodeType.kAttack;
         }
 
         public override void Execute(IDeepTreeAgent owner)
         {
             base.Execute(owner);
-            m_count = 0;
+
+            var owner = Container<ActionBase>.Instance.Get(owner.OwnerId);
+            if (owner == null)
+            {
+                return;
+            }
+            var property = owner.GetProperty(AgentPropertyType.kAttack);
+            m_attack = property.Value;
         }
         public override void DoAction(IDeepTreeAgent owner)
         {
@@ -50,21 +54,20 @@ namespace Assets.Script.Engine.Effect.Node
             {
                 return;
             }
-            m_count += 1;
-            target.AddProperty(Property, Value);
+
+            var defenderData = target.GetDamageDataForDefender();
+            var attackerData = MPool<DamageData>.Get();
+            data.AddProperty(AgentPropertyType.kAttack,m_attack);
+            
+            // todo:这里有待商榷
+            var damage = DamageFormula.Calculations( attackerData, defenderData);
+            target.AddProperty(AgentPropertyType.kHp, -damage);
         }
 
-
+        
         public override Interrupt(IDeepTreeAgent owner)
         {
             base.Interrupt(owner);
-            var target = Container<ActionBase>.Instance.Get(owner.TargetId);
-            if (target == null)
-            {
-                return;
-            }
-            target.AddProperty(Property, -Value * m_count );
-            m_count = 0;
         }
         
         #endregion <方法>

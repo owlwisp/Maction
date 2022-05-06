@@ -69,8 +69,11 @@ namespace Assets.Script.Engine.Effect
     public enum EffectConditionType
     {
         kNone = 0,
-        // 想同阵营
+        // 相同阵营
         kSelfCamp = 1,
+        // 等级
+        kLevel = 2,
+
   
     }   
     #endregion <EffectConditionType>
@@ -84,6 +87,11 @@ namespace Assets.Script.Engine.Effect
         kNone = 0,
         // 增加属性
         kAddProperty = 1,
+        // 造成攻击伤害
+        kAttack = 2,
+        // 嘲讽
+        kTaunt = 3,
+
     }   
     #endregion <EffectNodeType>
     

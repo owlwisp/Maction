@@ -1,12 +1,12 @@
 #region << 文 件 注 释 >>
 /*----------------------------------------------------------------
  * 公司名称：TuYooGame
- * 命名空间：Assets.Script.Engine.Effect.Condition
- * 文件名：EffectConditionBase
+ * 命名空间：Assets.Script.Engine.Effect.Node
+ * 文件名：TauntEffectNode
  * 
  * 创建者：owlwisp
  * 电子邮箱：owlwisp@163.com
- * 创建时间：2022/5/5 16:3:21
+ * 创建时间：2022/5/5 18:8:29
  * 描述：
  *
  * ---------------------------------------------------------------*/
@@ -15,34 +15,40 @@
 
 
 
-namespace Assets.Script.Engine.Effect.Condition
+namespace Assets.Script.Engine.Effect.Node
 {
     /// <summary>
-    /// effect 执行条件基类
+    /// effect 嘲讽
     /// </summary>
-    public class EffectConditionBase : ICondition , IDeepTreeCondition
+    public class TauntEffectNode : EffectNodeBase
     {
         #region <属性>
-        // 类型
-        public EffectConditionType Type { get; set; }
         #endregion <属性>
 
         #region <方法>
         // 第一次创建出来 之后调用函数
-        public void OnInit(){
-            Type = EffectConditionType.kNone;
+        public void OnInit()
+        {
+            Type = EffectNodeType.kTaunt;
         }
 
-        // 获取类型
-        public EffectConditionType GetType()
+        public override void Execute(IDeepTreeAgent owner)
         {
-            return Type;
+            base.Execute(owner);
+
+  
         }
-    
-        public bool IsTrue(IDeepTreeAgent owner)
+        public override void DoAction(IDeepTreeAgent owner)
         {
-            return false;
+
         }
+
+        
+        public override Interrupt(IDeepTreeAgent owner)
+        {
+            base.Interrupt(owner);
+        }
+        
         #endregion <方法>
 
         #region <事件>

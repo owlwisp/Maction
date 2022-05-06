@@ -2,7 +2,7 @@
 /*----------------------------------------------------------------
  * 公司名称：TuYooGame
  * 命名空间：Assets.Script.Engine.Effect.Condition
- * 文件名：SelfCampEffectCondition
+ * 文件名：LevelEffectCondition
  * 
  * 创建者：owlwisp
  * 电子邮箱：owlwisp@163.com
@@ -18,34 +18,29 @@
 namespace Assets.Script.Engine.Effect.Condition
 {
     /// <summary>
-    /// 判断是否是自己阵营的
+    /// 判断目标等级
     /// </summary>
-    public class SelfCampEffectCondition : EffectConditionBase
+    public class LevelEffectCondition : EffectConditionBase
     {
         #region <属性>
         // 阵营
-        private CampType m_campType;
+        private int m_level;
         
         #endregion <属性>
 
         #region <方法>
         // 第一次创建出来 之后调用函数
         public void OnInit(){
-            Type = EffectConditionType.kSelfCamp;
-            var owner = Container<ActionBase>.Instance.Get(owner.OwnerId);
-            if (owner != null)
-            {
-                m_campType = owner.CampType;
-            }
+            Type = EffectConditionType.kLevel;
         }
   
         public bool IsTrue(IDeepTreeAgent owner)
         {
             var target = Container<ActionBase>.Instance.Get(owner.TargetId);
 
-            return AgentBase.IsValid(target) && target.IsSameCamp(m_campType);
+            return AgentBase.IsValid(target) && target.Level >= m_level;
         }
-
+        
         #endregion <方法>
 
         #region <事件>

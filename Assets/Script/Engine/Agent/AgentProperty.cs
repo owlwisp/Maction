@@ -28,7 +28,7 @@ namespace Assets.Script.Engine.Agent
         // 属性值
         public int Value { get; set; }
         // 比例
-        public int rate { get; set; }
+        public int Rate { get; set; }
         // 属性类型
         public AgentPropertyType Type { get; set; }
         // 属性描述

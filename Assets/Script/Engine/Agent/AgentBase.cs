@@ -25,6 +25,9 @@ namespace Assets.Script.Engine.Agent
         #region <属性>
         // 全局唯一id
         public int Id { get; set; }
+
+        // 等级
+        public int Level { get; set; }
         // 阵营
         public AgentCampType Camp { get; set; }
         
@@ -46,6 +49,10 @@ namespace Assets.Script.Engine.Agent
         // 增加属性
         public void AddProperty(AgentPropertyType propertyType, int value){
             PropertySystem.AddProperty(propertyType, value);
+        }
+        // 获取属性
+        public AgentProperty GetProperty(AgentPropertyType propertyType){
+            return PropertySystem.GetProperty(propertyType);
         }
         // 是否活着
         public bool IsAlive(){
@@ -70,6 +77,16 @@ namespace Assets.Script.Engine.Agent
         public void AddProperty(AgentPropertyType propertyType, int value){
 
             PropertySystem.AddProperty(propertyType, value);
+        }
+
+        public DamageData GetDamageDataForAttacker(){
+            var data = MPool<DamageData>.Get();
+            return data;
+        }
+
+        public DamageData GetDamageDataForDefender(){
+            var data = MPool<DamageData>.Get();
+            return data;
         }
 
         #endregion <方法>

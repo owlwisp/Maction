@@ -1,12 +1,12 @@
 #region << 文 件 注 释 >>
 /*----------------------------------------------------------------
  * 公司名称：TuYooGame
- * 命名空间：Assets.Script.Engine.Effect.Condition
- * 文件名：EffectConditionBase
+ * 命名空间：Assets.Script.Engine.Formula
+ * 文件名：DamageFormula
  * 
  * 创建者：owlwisp
  * 电子邮箱：owlwisp@163.com
- * 创建时间：2022/5/5 16:3:21
+ * 创建时间：2022/5/5 16:31:23
  * 描述：
  *
  * ---------------------------------------------------------------*/
@@ -15,34 +15,22 @@
 
 
 
-namespace Assets.Script.Engine.Effect.Condition
+namespace Assets.Script.Engine.Formula
 {
     /// <summary>
-    /// effect 执行条件基类
+    /// 伤害公式类
     /// </summary>
-    public class EffectConditionBase : ICondition , IDeepTreeCondition
+    public static class DamageFormula
     {
         #region <属性>
-        // 类型
-        public EffectConditionType Type { get; set; }
         #endregion <属性>
 
         #region <方法>
         // 第一次创建出来 之后调用函数
-        public void OnInit(){
-            Type = EffectConditionType.kNone;
-        }
+        public static int Calculations(AttackerData attacker, DefenderData defender){
 
-        // 获取类型
-        public EffectConditionType GetType()
-        {
-            return Type;
         }
-    
-        public bool IsTrue(IDeepTreeAgent owner)
-        {
-            return false;
-        }
+  
         #endregion <方法>
 
         #region <事件>
