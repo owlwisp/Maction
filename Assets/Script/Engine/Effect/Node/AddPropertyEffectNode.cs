@@ -1,12 +1,12 @@
 #region << 文 件 注 释 >>
 /*----------------------------------------------------------------
  * 公司名称：TuYooGame
- * 命名空间：Assets.Script.Engine.Effect.Condition
- * 文件名：EffectConditionBase
+ * 命名空间：Assets.Script.Engine.Effect.Node
+ * 文件名：EAddPropertyEffectNode
  * 
  * 创建者：owlwisp
  * 电子邮箱：owlwisp@163.com
- * 创建时间：2022/5/5 16:3:21
+ * 创建时间：2022/5/5 11:32:23
  * 描述：
  *
  * ---------------------------------------------------------------*/
@@ -15,32 +15,41 @@
 
 
 
-namespace Assets.Script.Engine.Effect.Condition
+namespace Assets.Script.Engine.Effect.Node
 {
     /// <summary>
-    /// effect 执行条件基类
+    /// effect 执行结点基类
     /// </summary>
-    public class EffectConditionBase : ICondition , IDeepTreeCondition
+    public class AddPropertyEffectNode : EffectNodeBase
     {
         #region <属性>
-        // 类型
-        public EffectConditionType Type { get; set; }
+        
         #endregion <属性>
 
         #region <方法>
         // 第一次创建出来 之后调用函数
-        public void OnInit();
+        public void OnInit(){
+            Type = EffectNpcType.AddProperty;
 
-        // 获取类型
-        public EffectConditionType GetType()
-        {
-            return Type;
         }
-    
-        public bool IsTrue(IDeepTreeAgent owner)
+  
+        public void DoAction(IDeepTreeAgent owner)
         {
-            return true;
+            var target = Container<ActionBase>.Instance.Get(owner.TargetId);
+            if (target == null)
+            {
+                return;
+            }
+
+            
         }
+
+        public void Tick(IDeepTreeAgent owner){
+
+        }
+
+
+        
         #endregion <方法>
 
         #region <事件>

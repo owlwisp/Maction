@@ -26,9 +26,9 @@ namespace Assets.Script.Engine.Internal
         #endregion <属性>
 
         #region <方法>
-        // 第一次创建出来 之后调用函数
-        public void OnInit();
-  
+        // 获取类型
+        public EffectNodeType GetType();
+        public void DoAction();
         #endregion <方法>
 
         #region <事件>

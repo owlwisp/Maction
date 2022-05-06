@@ -1,12 +1,12 @@
 #region << 文 件 注 释 >>
 /*----------------------------------------------------------------
  * 公司名称：TuYooGame
- * 命名空间：Assets.Script.Engine.Internal
- * 文件名：ICondition
+ * 命名空间：Assets.Script.Code.Tree
+ * 文件名：IDeepTreeAgent
  * 
  * 创建者：owlwisp
  * 电子邮箱：owlwisp@163.com
- * 创建时间：2022/5/5 13:37:23
+ * 创建时间：2022/5/6 11:39:33
  * 描述：
  *
  * ---------------------------------------------------------------*/
@@ -15,29 +15,21 @@
 
 
 
-namespace Assets.Script.Engine.Internal
+namespace Assets.Script.Code.Tree
 {
-    /// <summary>
-    /// effect接口
+ /// <summary>
+    /// 深度树之行节点
     /// </summary>
-    public interface ICondition
+    public class IDeepTreeAgent
     {
         #region <属性>
+        public Action<IDeepTreeAgent,int > GetDeepTreeAgentDelegate;
         #endregion <属性>
 
         #region <方法>
         // 第一次创建出来 之后调用函数
- 
-        public void Execute();
-        // 启用
-        public void OnEnable();
-        // 禁用
-        public void OnDisable();
-        // 中断处理
-        public void Interrupt();
-        // 按帧更新
-        public void Tick();
-  
+        public int GetDeepTreeAgentId();
+        public GetDeepTreeAgentDelegate GetDeepTreeAgent();
         #endregion <方法>
 
         #region <事件>

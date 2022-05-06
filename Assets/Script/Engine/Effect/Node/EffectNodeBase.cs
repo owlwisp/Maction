@@ -23,17 +23,28 @@ namespace Assets.Script.Engine.Effect.Node
     public class EffectNodeBase : INode , IDeepTreeNode
     {
         #region <属性>
-        
+        // 类型
+        public EffectNodeType Type { get; set; }
         #endregion <属性>
 
         #region <方法>
         // 第一次创建出来 之后调用函数
         public void OnInit();
-  
-        public void DoAction()
+
+        // 获取类型
+        public EffectNodeType GetType()
+        {
+            return Type;
+        }
+        public void DoAction(IDeepTreeAgent owner)
         {
 
         }
+
+        public void Tick(IDeepTreeAgent owner){
+
+        }
+
         #endregion <方法>
 
         #region <事件>

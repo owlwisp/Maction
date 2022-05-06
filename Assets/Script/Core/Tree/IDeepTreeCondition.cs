@@ -27,7 +27,7 @@ namespace Assets.Script.Code.Tree
 
         #region <方法>
         // 第一次创建出来 之后调用函数
-        public virtual bool IsTrue();
+        public bool IsTrue(IDeepTreeAgent owner);
         #endregion <方法>
 
         #region <事件>

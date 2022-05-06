@@ -51,7 +51,22 @@ namespace Assets.Script.Engine.Agent
         public bool IsAlive(){
             return State == AgentStateType.Alive;
         }
+
+        // 是否生效
+        static bool IsValid(AgentBase agent){
+            return agent != null && agent.IsAlive();
+        }
+        // 是否是同一阵营
+        public bool IsSameCamp(AgentBase agent)
+        {
+            return Camp == agent.Camp;
+        }
   
+        public bool IsSameCamp(AgentCampType camp)
+        {
+            return Camp == camp;
+        }
+        
         #endregion <方法>
 
         #region <事件>

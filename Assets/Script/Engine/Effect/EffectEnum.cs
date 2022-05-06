@@ -23,9 +23,10 @@ namespace Assets.Script.Engine.Effect
     #region <EffectSourceType>
     public enum EffectSourceType
     {
-        
-        kNpc = 0,
-        kPlayer = 1,
+
+        kNone = 0,
+        kNpc = 1,
+        kPlayer = 2,
         
     }
     #endregion <EffectSourceType>
@@ -50,12 +51,40 @@ namespace Assets.Script.Engine.Effect
     /// </summary>
     public enum EffectMergeType
     {
+        kNone = 0,
         // 重置
-        kReset = 0,
+        kReset = 1,
         // 叠加
-        kAdd = 1,
+        kAdd = 2,
         // 互斥
-        kExclusive = 2,
+        kExclusive = 3,
     }   
     #endregion <EffectMergeType>
+
+
+    #region <EffectConditionType>
+    /// <summary>
+    /// effect condition 类型
+    /// </summary>
+    public enum EffectConditionType
+    {
+        kNone = 0,
+        // 想同阵营
+        kSelfCamp = 1,
+  
+    }   
+    #endregion <EffectConditionType>
+
+    #region <EffectNodeType>
+    /// <summary>
+    /// effect 执行结点类型
+    /// </summary>
+    public enum EffectNodeType
+    {
+        kNone = 0,
+        // 增加属性
+        kAddProperty = 1,
+    }   
+    #endregion <EffectNodeType>
+    
 }

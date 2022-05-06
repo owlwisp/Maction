@@ -17,20 +17,30 @@
 
 namespace Assets.Script.Code.Tree
 {
- /// <summary>
+    /// <summary>
     /// 深度树
     /// </summary>
     public class DeepTree 
     {
         #region <属性>
+        // 拥有者id，这里不想采用闭包的方式，所以用int
+        private int m_ownerId;
+        // 获取目标函数
+        public GetDeepTreeAgentDelegate m_delegate;
         // 根节点
         private DeepTreeNode m_root;
         #endregion <属性>
 
         #region <方法>
         // 第一次创建出来 之后调用函数
-        public void OnInit(){
+        public void OnInit(IDeepTreeAgent target){
+            m_ownerId = target.GetDeepTreeAgentId();
+            m_delegate = target.GetDeepTreeAgent();
+            m_root = new DeepTreeNode(this);
+        }
 
+        public IDeepTreeAgent GetOwner(){
+            return m_delegate(m_ownerId);
         }
 
         // 遍历结点

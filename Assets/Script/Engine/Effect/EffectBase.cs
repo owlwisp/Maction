@@ -20,7 +20,7 @@ namespace Assets.Script.Engine.Effect
     /// <summary>
     /// effect 基类
     /// </summary>
-    public class EffectBase : IEffect
+    public class EffectBase : IEffect ,IDeepTreeAgent
     {
         #region <属性>
         // 全局id
@@ -44,8 +44,25 @@ namespace Assets.Script.Engine.Effect
         // 特效id 链表
         List<int> EffectIds { get; set; }
 
+        // 效果标签
+        List<string> Tags { get; set; }
+
         // 广度树 ScopeTree
         DeepTree Tree { get; set; }
+
+        // 目标id
+        int TargetId { get; set; }
+
+        // 拥有者id
+        int OwnerId { get; set; }
+        
+        // 这块还需要在多考虑下
+        // 目标互斥列表
+        List<string> TargetExclusiveIds { get; set; }
+        // 目标替代列表
+        List<string> TargetReplaceIds { get; set; }
+        // 同一目标id是否重置
+        bool TargetReset { get; set; }
 
         #endregion <属性>
 
@@ -53,6 +70,19 @@ namespace Assets.Script.Engine.Effect
         // 第一次创建出来 之后调用函数
         public void OnInit(){
 
+        }
+
+        public int GetDeepTreeAgentId()
+        {
+            return Id;
+        }
+
+        public IDeepTreeAgent GetDeepTreeAgent()
+        {
+            return delegate(int id)
+            {
+                return Container<EffectBase>.Instance.Get(id);
+            };
         }
 
         //播放音乐
@@ -141,7 +171,11 @@ namespace Assets.Script.Engine.Effect
         void ExclusiveEffect(EffectBase effect)
         {
             // 互斥
+            // 判断标签tags是否互斥
+
+
         }
+
         #endregion <方法>
 
         #region <事件>

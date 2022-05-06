@@ -27,14 +27,10 @@ namespace Assets.Script.Code.Tree
 
         #region <方法>
         // 第一次创建出来 之后调用函数
-        public virtual void DoAction()
-        {
-        }
+        public void DoAction(IDeepTreeAgent owner);
 
         // 遍历结点
-        public virtual void Tick()
-        {
-        }
+        public  void Tick(IDeepTreeAgent owner);
   
         #endregion <方法>
 
