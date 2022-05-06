@@ -39,7 +39,7 @@ namespace Assets.Script.Engine.Effect.Condition
     
         public bool IsTrue(IDeepTreeAgent owner)
         {
-            return true;
+            return false;
         }
         #endregion <方法>
 

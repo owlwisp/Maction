@@ -66,7 +66,12 @@ namespace Assets.Script.Engine.Agent
         {
             return Camp == camp;
         }
-        
+        // 增加属性
+        public void AddProperty(AgentPropertyType propertyType, int value){
+
+            PropertySystem.AddProperty(propertyType, value);
+        }
+
         #endregion <方法>
 
         #region <事件>

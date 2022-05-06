@@ -63,7 +63,22 @@ namespace Assets.Script.Code.Tree
             }
             else
             {
-                m_node.DoAction(m_tree.GetOwner());
+                m_node.Execute(m_tree.GetOwner());
+            }
+        }
+
+        // 中断结点
+        public void Interrupt(){
+            if (IsConditionNode)
+            {
+                foreach (var child in m_children)
+                {
+                    child.Interrupt(m_tree.GetOwner());
+                }
+            }
+            else
+            {
+                m_node.Interrupt(m_tree.GetOwner());
             }
         }
 
@@ -75,12 +90,18 @@ namespace Assets.Script.Code.Tree
                 {
                     foreach (var child in m_children)
                     {
-                        child.Tick(m_tree.GetOwner());
+                        if (child.IsTick())
+                        {
+                            child.Tick(m_tree.GetOwner());
+                        }
                     }
                 }
             }
             else{
-                m_node.Tick(m_tree.GetOwner());
+                if (m_node.IsTick())
+                {
+                    m_node.Tick(m_tree.GetOwner());
+                }
             }
         }
 

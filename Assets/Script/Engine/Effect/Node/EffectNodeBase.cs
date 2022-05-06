@@ -25,24 +25,71 @@ namespace Assets.Script.Engine.Effect.Node
         #region <属性>
         // 类型
         public EffectNodeType Type { get; set; }
+        // 执行次数
+        int Count { get; set; }
+        // 延迟时间
+        int Delay { get; set; }
+
+        // 当前次数
+        int m_currentCount;
+        // 当前时间
+        int m_currentDelay ;
+
+        bool m_isTick;
+        // 是否开启时间遍历
+
         #endregion <属性>
 
         #region <方法>
         // 第一次创建出来 之后调用函数
-        public void OnInit();
+        public void OnInit(){
+
+
+            m_tick = Count != 0;
+        }
 
         // 获取类型
         public EffectNodeType GetType()
         {
             return Type;
         }
-        public void DoAction(IDeepTreeAgent owner)
+
+        public virtual void Execute(IDeepTreeAgent owner)
+        {
+            m_currentCount = Count;
+            m_currentDelay = Delay;
+        }
+        // 中断
+        public virtual void Interrupt(IDeepTreeAgent owner)
+        {
+            m_currentCount = 0;
+            m_currentDelay = 0;
+        }
+
+        public virtual void DoAction(IDeepTreeAgent owner)
         {
 
         }
 
-        public void Tick(IDeepTreeAgent owner){
+        public virtual bool IsTick()
+        {
+            return m_tick;
+        }
+        public virtual void Tick(IDeepTreeAgent owner)
+        {
+            if (m_currentCount > 0 || m_currentCount == -1)
+            {
+                m_currentDelay -= 1;
 
+                if (m_currentDelay <= 0)
+                {
+                    DoAction(owner);
+                    m_currentDelay = Delay;
+                    if(m_currentCount > 0 ){
+                        m_currentCount -= 1;
+                    }
+                }
+            }
         }
 
         #endregion <方法>

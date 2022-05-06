@@ -23,32 +23,49 @@ namespace Assets.Script.Engine.Effect.Node
     public class AddPropertyEffectNode : EffectNodeBase
     {
         #region <属性>
-        
+        // 属性
+        public AgentPropertyType Property { get; set; }
+        public int Value { get; set; }
+
+        // 增加属性次数
+        public int m_count ;
         #endregion <属性>
 
         #region <方法>
         // 第一次创建出来 之后调用函数
-        public void OnInit(){
+        public void OnInit()
+        {
             Type = EffectNpcType.AddProperty;
-
         }
-  
-        public void DoAction(IDeepTreeAgent owner)
+
+        public override void Execute(IDeepTreeAgent owner)
+        {
+            base.Execute(owner);
+            m_count = 0;
+        }
+        public override void DoAction(IDeepTreeAgent owner)
         {
             var target = Container<ActionBase>.Instance.Get(owner.TargetId);
             if (target == null)
             {
                 return;
             }
-
-            
+            m_count += 1;
+            target.AddProperty(Property, Value);
         }
 
-        public void Tick(IDeepTreeAgent owner){
-
+        
+        public override Interrupt(IDeepTreeAgent owner)
+        {
+            base.Interrupt(owner);
+            var target = Container<ActionBase>.Instance.Get(owner.TargetId);
+            if (target == null)
+            {
+                return;
+            }
+            target.AddProperty(Property, -Value * m_count );
+            m_count = 0;
         }
-
-
         
         #endregion <方法>
 

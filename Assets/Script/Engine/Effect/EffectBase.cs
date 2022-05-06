@@ -27,10 +27,6 @@ namespace Assets.Script.Engine.Effect
         public int Id { get; set; }
         // 类型
         EffectType Type { get; set; }
-        // 执行次数
-        int Count { get; set; }
-        // 延迟时间
-        float Delay { get; set; }
         // 来源类型
         EffectSourceType SourceType { get; set; }
         // 合并方式
@@ -55,7 +51,7 @@ namespace Assets.Script.Engine.Effect
 
         // 拥有者id
         int OwnerId { get; set; }
-        
+
         // 这块还需要在多考虑下
         // 目标互斥列表
         List<string> TargetExclusiveIds { get; set; }
@@ -121,6 +117,7 @@ namespace Assets.Script.Engine.Effect
         public void Interrupt()
         {
             // 中断处理
+            Tree.Interrupt();
         }
         // 按帧更新
         public void Tick()
