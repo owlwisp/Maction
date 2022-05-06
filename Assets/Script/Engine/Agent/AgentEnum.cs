@@ -49,6 +49,44 @@ namespace Assets.Script.Engine.Agent
         kUnknow = 3,
         
     }
+    #endregion <AgentStateType>
+
+
+    /// <summary>
+    /// agent 属性 id
+    /// </summary>
+    #region <AgentPropertyType>
+    public enum AgentPropertyType
+    {
+        // 生命
+        kHp = 1,
+        // 最大生命
+        kHpMax = 2,
+        // 攻击
+        kAttack = 3,
+        // 防御
+        kDefence = 4,
+        // 攻击速度
+        kAttackSpeed = 5,
+        // 魔法
+        kMagic = 6,
+        // 最大魔法
+        kMagicMax = 7,
+        // 暴击率
+        kCrit = 8,
+        // 暴击倍率
+        kCritMultiple = 9,
+        // 移动速度
+        kMoveSpeed = 10,
+
+
+
+
+       
+        
+    }
+    #endregion <AgentPropertyType>
+    
 
 
 }

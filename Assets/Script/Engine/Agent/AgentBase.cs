@@ -43,6 +43,14 @@ namespace Assets.Script.Engine.Agent
             PropertySystem = new AgentPropertySystem();
             PropertySystem.OnInit();
         }
+        // 增加属性
+        public void AddProperty(AgentPropertyType propertyType, int value){
+            PropertySystem.AddProperty(propertyType, value);
+        }
+        // 是否活着
+        public bool IsAlive(){
+            return State == AgentStateType.Alive;
+        }
   
         #endregion <方法>
 

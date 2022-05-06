@@ -2,7 +2,7 @@
 /*----------------------------------------------------------------
  * 公司名称：TuYooGame
  * 命名空间：Assets.Script.Engine.Agent
- * 文件名：AgentPropertySystem
+ * 文件名：AgentProperty
  * 
  * 创建者：owlwisp
  * 电子邮箱：owlwisp@163.com
@@ -18,37 +18,40 @@
 namespace Assets.Script.Engine.Agent
 {
     /// <summary>
-    /// 人物属性系统
+    /// 人物属性
     /// </summary>
-    public class AgentPropertySystem
+    public class AgentProperty
     {
         #region <属性>
-        // 属性字典
-        private Dictionary<AgentPropertyType, AgentProperty> m_propertyDict;
-     
+        // 属性名称
+        public string Name { get; set; }
+        // 属性值
+        public int Value { get; set; }
+        // 属性类型
+        public AgentPropertyType Type { get; set; }
+        // 属性描述
+        public string Description { get; set; }
+        // 属性值上限
+        public int MaxValue { get; set; }
+        // 属性值下限
+        public int MinValue { get; set; }
+        
+
         #endregion <属性>
 
         #region <方法>
-        // 第一次创建出来 之后调用函数
-        public void OnInit(){
-            m_propertyDict = new Dictionary<AgentPropertyType, AgentProperty>();
-        }
         // 增加属性
-        public void AddProperty(AgentPropertyType type, AgentProperty property)
+        public void Add(int value)
         {
-            if (m_propertyDict.ContainsKey(type))
+            Value += value;
+            if (Value > MaxValue)
             {
-                m_propertyDict[type].Add(property);
+                Value = MaxValue;
             }
-            else
+            else if (Value < MinValue)
             {
-                m_propertyDict.Add(type, property);
+                Value = MinValue;
             }
-        }
-  
-        // 清理
-        public void OnClear(){
-            m_propertyDict.Clear();
         }
         #endregion <方法>
 

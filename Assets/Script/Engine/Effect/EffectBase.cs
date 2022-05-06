@@ -101,6 +101,47 @@ namespace Assets.Script.Engine.Effect
 
         }
 
+        // 合并effect
+        public void Merge(EffectBase effect)
+        {
+            // 合并属性
+            switch (effect.MergeType)
+            {
+                case EffectMergeType.kReset:
+                    // 重置
+                    ResetEffect(effect);
+                    break;
+                case EffectMergeType.kAdd:
+                    // 加
+                    AddEffect(effect);
+                    break;
+                case EffectMergeType.kExclusive:
+                    // 互斥
+                    ExclusiveEffect(effect);
+                    break;
+           
+                default:
+                    break;
+            }
+        }
+
+        // 重置
+        void ResetEffect(EffectBase effect)
+        {
+            // 重置
+        }
+
+        // 加
+        void AddEffect(EffectBase effect)
+        {
+            // 加
+        }
+
+        // 互斥
+        void ExclusiveEffect(EffectBase effect)
+        {
+            // 互斥
+        }
         #endregion <方法>
 
         #region <事件>
