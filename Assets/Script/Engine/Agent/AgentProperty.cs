@@ -15,12 +15,14 @@
 
 
 
+using Assets.Script.Core.Pool;
+
 namespace Assets.Script.Engine.Agent
 {
     /// <summary>
     /// 人物属性
     /// </summary>
-    public class AgentProperty
+    public class AgentProperty : IObject
     {
         #region <属性>
         // 属性名称
@@ -54,6 +56,32 @@ namespace Assets.Script.Engine.Agent
             {
                 Value = MinValue;
             }
+        }
+
+        public void OnInit(){ 
+
+        }
+        //进入缓存池调用函数
+        public void OnEnable(){ 
+
+        }
+        //退出缓冲池 调用函数
+        public void OnDisable(){ 
+
+        }
+
+        //  重置数据调用函数
+        public void OnReset(){ 
+
+        }
+        // 回收的时候调用函数
+        public void OnRecycle(){
+
+        }
+
+        // 获取对象类型
+        public new string GetType(){
+            return "AgentProperty";
         }
         #endregion <方法>
 

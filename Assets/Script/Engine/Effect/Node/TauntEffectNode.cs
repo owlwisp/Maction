@@ -44,7 +44,6 @@ namespace Assets.Script.Engine.Effect.Node
         {
 
         }
-
         
         public override void Interrupt(IDeepTreeAgent owner)
         {

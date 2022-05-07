@@ -16,6 +16,7 @@
 
 
 using System.Collections.Generic;
+using Assets.Script.Core.Pool;
 
 namespace Assets.Script.Engine.Agent
 {
@@ -75,6 +76,11 @@ namespace Assets.Script.Engine.Agent
         
         // 清理
         public void OnClear(){
+            // 遍历字典回收属性
+            foreach (var property in m_propertyDict.Values)
+            {
+                MPool<AgentProperty>.Instance.Recycle(property);
+            }
             m_propertyDict.Clear();
         }
         #endregion <方法>

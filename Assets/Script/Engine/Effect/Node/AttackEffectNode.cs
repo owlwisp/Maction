@@ -52,7 +52,7 @@ namespace Assets.Script.Engine.Effect.Node
                 return;
             }
             var property = agent.GetProperty(AgentPropertyType.kAttack);
-            m_attack = property.Value;
+            m_attack = property.Value * Rate;
         }
         public override void DoAction(IDeepTreeAgent owner)
         {

@@ -16,6 +16,7 @@
 
 
 using Assets.Script.Core.Pool;
+using Assets.Script.Engine.Agent;
 using Assets.Script.Engine.Formula;
 
 namespace Assets.Script.Engine.Process
@@ -31,10 +32,12 @@ namespace Assets.Script.Engine.Process
         #region <方法>
         public static void OnInit(){
             MPool<DamageData>.Instance.Init(12);
+            MPool<AgentProperty>.Instance.Init(24);
         }
 
         public static void OnDestroy(){
             MPool<DamageData>.Instance.Clear();
+            MPool<AgentProperty>.Instance.Clear();
         }
         
         #endregion <方法>
