@@ -16,6 +16,7 @@
 
 
 using Assets.Script.Core.Base;
+using Assets.Script.Core.Container;
 using Assets.Script.Core.Pool;
 using Assets.Script.Engine.Agent;
 using Assets.Script.Engine.Effect;

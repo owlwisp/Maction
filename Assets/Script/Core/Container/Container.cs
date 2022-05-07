@@ -1,7 +1,7 @@
 #region << 文 件 注 释 >>
 /*----------------------------------------------------------------
  * 公司名称：TuYooGame
- * 命名空间：Assets.Script.Core.Pool
+ * 命名空间：Assets.Script.Core.Container
  * 文件名：Container<T>
  * 
  * 创建者：owlwisp
@@ -17,9 +17,9 @@
 
 using System;
 using System.Collections.Generic;
+using Assets.Script.Core.Pool;
 
-
-namespace Assets.Script.Core.Pool
+namespace Assets.Script.Core.Container
 {
     /// <summary>
     /// container 管理类
