@@ -24,7 +24,7 @@ namespace Assets.Script.Engine.Formula
     /// <summary>
     /// 伤害数据
     /// </summary>
-    public class DamageData : IObject
+    public class DamageData : IPoolData
     {
         #region <属性>
         //属性字典

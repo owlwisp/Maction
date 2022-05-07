@@ -23,7 +23,7 @@ namespace Assets.Script.Engine.Timer
     /// <summary>
     /// MTimerData 的摘要说明
     /// </summary>
-    internal class MTimerData : IObject
+    internal class MTimerData : IPoolData
     {
         #region <常量>
         #endregion <常量>
@@ -89,9 +89,9 @@ namespace Assets.Script.Engine.Timer
             throw new System.NotImplementedException();
         }
 
-        string IObject.GetType()
+        public new string GetType()
         {
-            throw new System.NotImplementedException();
+            return "MTimerData";
         }
         #endregion <方法>
 

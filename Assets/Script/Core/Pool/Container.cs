@@ -1,7 +1,7 @@
 #region << 文 件 注 释 >>
 /*----------------------------------------------------------------
  * 公司名称：TuYooGame
- * 命名空间：Assets.Script.Engine.Base
+ * 命名空间：Assets.Script.Core.Pool
  * 文件名：Container<T>
  * 
  * 创建者：owlwisp
@@ -17,21 +17,19 @@
 
 using System;
 using System.Collections.Generic;
-using Assets.Script.Engine.Effect;
-using Assets.Script.Engine.Internal;
 
-namespace Assets.Script.Engine.Base
+
+namespace Assets.Script.Core.Pool
 {
     /// <summary>
     /// container 管理类
     /// </summary>
-    public class Container<T> :IManager
+    public class Container<T> where T : IObject , new()
     {
         #region <属性>
         private static Container<T> m_instance;
         //存储T的链表
         private List<T> m_list ;
-
 
         #endregion <属性>
 
@@ -78,13 +76,13 @@ namespace Assets.Script.Engine.Base
         public T Get(int id){
             //TODO:
             // 遍历数组
-            //foreach (var t in m_list)
-            //{
-            //    if (t.Id == id)
-            //    {
-            //        return t;
-            //    }
-            //}
+            foreach (var t in m_list)
+            {
+                if (t.Id == id)
+                {
+                    return t;
+                }
+            }
             return default(T);
         }
 

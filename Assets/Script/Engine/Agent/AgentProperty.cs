@@ -22,7 +22,7 @@ namespace Assets.Script.Engine.Agent
     /// <summary>
     /// 人物属性
     /// </summary>
-    public class AgentProperty : IObject
+    public class AgentProperty : IPoolData
     {
         #region <属性>
         // 属性名称

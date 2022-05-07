@@ -18,7 +18,6 @@
 using System.Collections.Generic;
 using Assets.Script.Code.Tree;
 using Assets.Script.Core.Pool;
-using Assets.Script.Engine.Base;
 using Assets.Script.Engine.Internal;
 
 namespace Assets.Script.Engine.Effect
@@ -26,7 +25,7 @@ namespace Assets.Script.Engine.Effect
     /// <summary>
     /// effect 基类
     /// </summary>
-    public class EffectBase : IEffect , IDeepTreeAgent, IObject
+    public class EffectBase : IEffect , IDeepTreeAgent, IPoolData, IObject
     {
         #region <属性>
         // 全局id

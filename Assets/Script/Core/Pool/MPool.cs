@@ -22,7 +22,7 @@ namespace Assets.Script.Core.Pool
     /// <summary>
     /// MPool 的摘要说明
     /// </summary>
-    public class MPool<T> where T : IObject , new()
+    public class MPool<T> where T : IPoolData, new()
     {
         #region <常量>
         #endregion <常量>

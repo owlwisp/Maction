@@ -24,7 +24,7 @@ namespace Assets.Script.Engine.Agent
     /// <summary>
     /// 人物代理类
     /// </summary>
-    public class AgentBase : IAgent
+    public class AgentBase : IAgent, IObject
     {
         #region <属性>
         // 全局唯一id
