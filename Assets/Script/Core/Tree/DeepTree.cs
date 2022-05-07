@@ -25,6 +25,8 @@ namespace Assets.Script.Code.Tree
     public class DeepTree 
     {
         #region <属性>
+        public delegate void DeepTreeCompleteDelegate();
+
         // 拥有者id，这里不想采用闭包的方式，所以用int
         private int m_ownerId;
 
@@ -32,17 +34,20 @@ namespace Assets.Script.Code.Tree
         // 获取目标函数
         public GetDeepTreeAgentDelegate m_delegate;
         // 根节点
-        private DeepTreeNode m_root;
+        private DeepTreeLeaf m_root;
+        // 结束回调函数
+        private DeepTreeCompleteDelegate m_completeDelegate;
         #endregion <属性>
 
         #region <方法>
         // 第一次创建出来 之后调用函数
-        public void OnInit(IDeepTreeAgent target){
+        public void OnInit(IDeepTreeAgent target, DeepTreeCompleteDelegate completeDelegate){
             m_tickEnable = false;
             m_ownerId = target.GetDeepTreeAgentId();
             m_delegate = target.GetDeepTreeAgent();
-            m_root = new DeepTreeNode();
-            m_root.OnInit();
+            m_completeDelegate = completeDelegate;
+            m_root = new DeepTreeLeaf();
+            m_root.OnInit(m_completeDelegate);
         }
 
         public IDeepTreeAgent GetOwner(){

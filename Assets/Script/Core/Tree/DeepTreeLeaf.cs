@@ -2,7 +2,7 @@
 /*----------------------------------------------------------------
  * 公司名称：TuYooGame
  * 命名空间：Assets.Script.Code.Tree
- * 文件名：DeepTreeNode
+ * 文件名：DeepTreeLeaf
  * 
  * 创建者：owlwisp
  * 电子邮箱：owlwisp@163.com
@@ -16,42 +16,76 @@
 
 
 using System.Collections.Generic;
+using static Assets.Script.Code.Tree.DeepTree;
 
 namespace Assets.Script.Code.Tree
 {
  /// <summary>
-    /// 深度树结点
+    /// 深度树叶子
     /// </summary>
-    public class DeepTreeNode
+    public class DeepTreeLeaf
     {
         #region <属性>
         // 是否是条件节点
         public bool IsConditionNode { get; set; }
-
+   
         IDeepTreeNode m_node;
+
         IDeepTreeCondition m_condition;
-        List<DeepTreeNode> m_children;
+        List<DeepTreeLeaf> m_children;
+        //已经完成的结点个数
+        int m_completeCount;
+
+        // 结束回调
+        DeepTreeCompleteDelegate m_completeDelegate;
         #endregion <属性>
 
         #region <方法>
         // 第一次创建出来 之后调用函数
-        public void OnInit(){
+        public void OnInit(DeepTreeCompleteDelegate completeDelegate = null){
             IsConditionNode = false;
+            m_completeDelegate = completeDelegate;
         }
 
         // 增加子结点   
-        public void AddChild(DeepTreeNode node){
-            
-            if(m_children == null){
-                m_children = new List<DeepTreeNode>();
-            }
+        public void AddChild(DeepTreeLeaf node){
             m_children.Add(node);
+            node.SetCompleteDelegate(delegate {
+                m_completeCount += 1;
+                if(m_completeCount == m_children.Count){
+                    m_completeDelegate();
+                }
+            });
             IsConditionNode = true;
         }
 
+        // 设置条件
+        public void SetCondition(IDeepTreeCondition condition){
+            m_condition = condition;
+            IsConditionNode = true;
+
+            if(m_children == null){
+                m_children = new List<DeepTreeLeaf>();
+            }
+        }
+        // 设置结点
+        public void SetNode(IDeepTreeNode node){
+            m_node = node;
+            IsConditionNode = false;
+            m_children.Clear();
+            m_children = null ;
+            
+            m_node.SetCompleteDelegate(m_completeDelegate);
+        }
+        // 设置完成回调函数
+        public void SetCompleteDelegate(DeepTreeCompleteDelegate completeDelegate){
+            m_completeDelegate = completeDelegate;
+        }
+ 
         // 执行结点
         public void Execute(IDeepTreeAgent owner)
         {
+            m_completeCount = 0;
             if (IsConditionNode)
             {
                 if (m_condition.IsTrue(owner))
@@ -101,6 +135,19 @@ namespace Assets.Script.Code.Tree
                 if (m_node.IsTick())
                 {
                     m_node.Tick(owner);
+                }
+            }
+        }
+
+        public void Complete(){
+            if (IsConditionNode)
+            {
+                m_completeDelegate();
+            }
+            else{
+                if (m_completeDelegate != null)
+                {
+                    m_completeDelegate();
                 }
             }
         }

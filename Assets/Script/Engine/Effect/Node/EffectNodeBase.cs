@@ -17,6 +17,7 @@
 
 using Assets.Script.Code.Tree;
 using Assets.Script.Engine.Internal;
+using static Assets.Script.Code.Tree.DeepTree;
 
 namespace Assets.Script.Engine.Effect.Node
 {
@@ -37,16 +38,18 @@ namespace Assets.Script.Engine.Effect.Node
         int m_currentCount;
         // 当前时间
         int m_currentDelay ;
-
-        bool m_isTick;
         // 是否开启时间遍历
+        bool m_isTick;
 
+        // 结束
+        bool m_isFinish;
+        // 完成回调函数
+        DeepTreeCompleteDelegate m_completeDelegate;
         #endregion <属性>
 
         #region <方法>
         // 第一次创建出来 之后调用函数
         public void OnInit(){
-
 
             m_isTick = Count != 0;
             Type = EffectNodeType.kNone;
@@ -58,16 +61,21 @@ namespace Assets.Script.Engine.Effect.Node
             return Type;
         }
 
+        // 设置完成回调函数
+        public void SetCompleteDelegate(DeepTreeCompleteDelegate completeDelegate)
+        {
+            m_completeDelegate = completeDelegate;
+        }
         public virtual void Execute(IDeepTreeAgent owner)
         {
             m_currentCount = Count;
             m_currentDelay = Delay;
+            m_isFinish = false;
         }
         // 中断
         public virtual void Interrupt(IDeepTreeAgent owner)
         {
-            m_currentCount = 0;
-            m_currentDelay = 0;
+            Finish();
         }
 
         public virtual void DoAction(IDeepTreeAgent owner)
@@ -89,12 +97,27 @@ namespace Assets.Script.Engine.Effect.Node
                 {
                     DoAction(owner);
                     m_currentDelay = Delay;
-                    if(m_currentCount > 0 ){
+                    if(m_currentCount > 1 ){
+                        if(m_currentCount == 1){
+                            // 设置结点结束
+                            Finish();
+                        }
                         m_currentCount -= 1;
                     }
+             
                 }
             }
         }
+
+        // 结束结点
+        public virtual void Finish()
+        {
+            m_currentCount = 0;
+            m_currentDelay = 0;
+            m_isFinish = true;
+            m_completeDelegate();
+        }
+            
 
         #endregion <方法>
 

@@ -15,8 +15,11 @@
 
 
 
+using Assets.Script.Core.Base;
 using Assets.Script.Core.Pool;
 using Assets.Script.Engine.Agent;
+using Assets.Script.Engine.Base;
+using Assets.Script.Engine.Effect;
 using Assets.Script.Engine.Formula;
 
 namespace Assets.Script.Engine.Process
@@ -31,6 +34,7 @@ namespace Assets.Script.Engine.Process
 
         #region <方法>
         public static void OnInit(){
+            // 这个可能需要更细致的划分
             MPool<EffectBase>.Instance.Init(24);
             MPool<DamageData>.Instance.Init(12);
             MPool<AgentProperty>.Instance.Init(48);

@@ -17,6 +17,8 @@
 
 using System.Collections.Generic;
 using Assets.Script.Code.Tree;
+using Assets.Script.Core.Base;
+using Assets.Script.Core.Pool;
 using Assets.Script.Engine.Base;
 using Assets.Script.Engine.Internal;
 

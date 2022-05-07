@@ -15,7 +15,10 @@
 
 
 
+using System;
 using System.Collections.Generic;
+using Assets.Script.Engine.Effect;
+using Assets.Script.Engine.Internal;
 
 namespace Assets.Script.Engine.Base
 {
@@ -28,8 +31,7 @@ namespace Assets.Script.Engine.Base
         private static Container<T> m_instance;
         //存储T的链表
         private List<T> m_list ;
-        //按照id存储列表的字典
-        private Dictionary<int, List<T>> m_dict ;
+
 
         #endregion <属性>
 
@@ -38,18 +40,15 @@ namespace Assets.Script.Engine.Base
         public void Init()
         {
             m_list = new List<T>();
-            m_dict = new Dictionary<int, List<T>>();
         }
 
         public void Release(){
             m_list.Clear();
-            m_dict.Clear();
 
         }
 
         public void Destroy(){
             m_list = null;
-            m_dict = null;
         }
 
         //单例模式实例
@@ -67,31 +66,29 @@ namespace Assets.Script.Engine.Base
         }
 
         // 通过id和T给字典和list增加元素
-        public void Add(T t,int id){
-            if(!m_dict.ContainsKey(id)){
-                m_dict.Add(id,new List<T>());
-            }
-            m_dict[id].Add(t);
+        public void Add(T t){
             m_list.Add(t);
         }
 
         // 通过id和T给字典和list删除元素
-        public void Remove(T t,int id){
-            if(m_dict.ContainsKey(id)){
-                m_dict[id].Remove(t);
-                m_list.Remove(t);
-            }
+        public void Remove(T t){
+            m_list.Remove(t);
         }
-
-        // 获取对象
+        // 遍历数组获取对象
         public T Get(int id){
-            if(m_dict.ContainsKey(id)){
-                if(m_dict[id].Count > 0){
-                    return m_dict[id][0];
-                }
-            }
+            //TODO:
+            // 遍历数组
+            //foreach (var t in m_list)
+            //{
+            //    if (t.Id == id)
+            //    {
+            //        return t;
+            //    }
+            //}
             return default(T);
         }
+
+  
 
         // 根据筛选函数获取链表
         public List<T> GetList(System.Func<T,bool> func){
@@ -104,7 +101,8 @@ namespace Assets.Script.Engine.Base
             return list;
         }
 
-  
+
+
         #endregion <方法>
 
         #region <事件>

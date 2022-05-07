@@ -46,7 +46,7 @@ namespace Assets.Script.Core.Base
 
         #region <方法>
 
-        public static T instance
+        public static T Instance
         {
             get
             {
@@ -62,11 +62,13 @@ namespace Assets.Script.Core.Base
                 }
             }
         }
+
         
         public static void OnDestroy(T instance)
         {
             _instance = default(T);
         }
+
         #endregion <方法>
 
         #region <事件>

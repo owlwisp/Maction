@@ -15,6 +15,8 @@
 
 
 
+using static Assets.Script.Code.Tree.DeepTree;
+
 namespace Assets.Script.Code.Tree
 {
  /// <summary>
@@ -28,13 +30,15 @@ namespace Assets.Script.Code.Tree
         #region <方法>
         // 第一次创建出来 之后调用函数
         public void Execute(IDeepTreeAgent owner);
-
+        // 是否需要tick
         public bool IsTick();
         // 遍历结点
         public  void Tick(IDeepTreeAgent owner);
-
         // 中断技能
         public void Interrupt(IDeepTreeAgent owner);
+
+        // 设置完成回调函数
+        public void SetCompleteDelegate(DeepTreeCompleteDelegate completeDelegate);
   
         #endregion <方法>
 

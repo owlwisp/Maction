@@ -17,6 +17,7 @@
 
 using System.Collections.Generic;
 using Assets.Script.Code.Tree;
+using Assets.Script.Core.Pool;
 using Assets.Script.Engine.Base;
 using Assets.Script.Engine.Internal;
 
@@ -25,7 +26,7 @@ namespace Assets.Script.Engine.Effect
     /// <summary>
     /// effect 基类
     /// </summary>
-    public class EffectBase : IEffect , IDeepTreeAgent
+    public class EffectBase : IEffect , IDeepTreeAgent, IObject
     {
         #region <属性>
         // 全局id
@@ -57,23 +58,23 @@ namespace Assets.Script.Engine.Effect
         public int TargetId { get; set; }
 
         // 目标互斥列表
-        List<string> TargetExclusiveIds { get; set; }
+        List<int> TargetExclusiveIds { get; set; }
         // 可以被替代的模版列表
-        List<string> TargetReplaceIds { get; set; }
+        List<int> TargetReplaceIds { get; set; }
 
         #endregion <属性>
 
         #region <方法>
         // 第一次创建出来 之后调用函数
         public void OnInit(){
-
+            Tree = new DeepTree();
+            Tree.OnInit(this, Complete);
         }
 
         public int GetDeepTreeAgentId()
         {
             return Id;
         }
-
 
 
         public IDeepTreeAgent.GetDeepTreeAgentDelegate GetDeepTreeAgent()
@@ -101,6 +102,8 @@ namespace Assets.Script.Engine.Effect
         //执行effect
         public void Execute()
         {
+            PlayEffect();
+            PlaySound();
             // 执行
             Tree.Execute();
         }
@@ -116,6 +119,12 @@ namespace Assets.Script.Engine.Effect
         {
             // 关闭
         }
+
+        // 完成
+        public void Complete(){
+
+        }
+
         // 中断处理
         public void Interrupt()
         {
@@ -127,8 +136,6 @@ namespace Assets.Script.Engine.Effect
         {
             // 更新深度树
             Tree.Tick();
-            
-
         }
 
         // 合并effect
@@ -139,11 +146,11 @@ namespace Assets.Script.Engine.Effect
             {
                 switch (ResetType)
                 {
-                    case EffectResetType.Reset:
+                    case EffectResetType.kReset:
                         // 重置
                         EffectMergeReset(effect);
                         break;
-                    case EffectResetType.Append:
+                    case EffectResetType.kAppend:
                         // 追加
                         EffectMergeAppend(effect);
                         break;
@@ -181,6 +188,20 @@ namespace Assets.Script.Engine.Effect
         {
             // 是否可以被替代
             return TargetReplaceIds.Contains(effect.TemplateId);
+        }
+
+
+        public void OnReset()
+        {
+        }
+
+        public void OnRecycle()
+        {
+        }
+
+        public new string GetType()
+        {
+            return "EffectBase";
         }
         #endregion <方法>
 
