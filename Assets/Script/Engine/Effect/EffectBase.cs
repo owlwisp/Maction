@@ -51,7 +51,7 @@ namespace Assets.Script.Engine.Effect
         // 广度树 ScopeTree
         DeepTree Tree { get; set; }
 
-        // 目标id
+        // 第一目标id
         public int TargetId { get; set; }
 
         // 这块还需要在多考虑下

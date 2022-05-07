@@ -31,7 +31,15 @@ namespace Assets.Script.Engine.Internal
         #region <方法>
         // 获取类型
         public EffectNodeType GetType();
+
+        // node结点开始执行的第一个函数
+        public void Execute(IDeepTreeAgent owner);
+
+        // 按tick的方式执行的借口
         public void DoAction(IDeepTreeAgent owner);
+
+        // node结点被取消后调用的函数
+        public void Interrupt(IDeepTreeAgent owner);
         #endregion <方法>
 
         #region <事件>

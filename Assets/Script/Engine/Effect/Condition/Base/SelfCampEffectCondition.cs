@@ -1,7 +1,7 @@
 #region << 文 件 注 释 >>
 /*----------------------------------------------------------------
  * 公司名称：TuYooGame
- * 命名空间：Assets.Script.Engine.Effect.Condition
+ * 命名空间：Assets.Script.Engine.Effect.Condition.Base
  * 文件名：SelfCampEffectCondition
  * 
  * 创建者：owlwisp
@@ -19,7 +19,7 @@ using Assets.Script.Code.Tree;
 using Assets.Script.Engine.Agent;
 using Assets.Script.Engine.Base;
 
-namespace Assets.Script.Engine.Effect.Condition
+namespace Assets.Script.Engine.Effect.Condition.Base
 {
     /// <summary>
     /// 判断是否是自己阵营的

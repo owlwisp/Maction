@@ -1,7 +1,7 @@
 #region << 文 件 注 释 >>
 /*----------------------------------------------------------------
  * 公司名称：TuYooGame
- * 命名空间：Assets.Script.Engine.Effect.Node
+ * 命名空间：Assets.Script.Engine.Effect.Node.Base
  * 文件名：TauntEffectNode
  * 
  * 创建者：owlwisp
@@ -17,7 +17,7 @@
 
 using Assets.Script.Code.Tree;
 
-namespace Assets.Script.Engine.Effect.Node
+namespace Assets.Script.Engine.Effect.Node.Base
 {
     /// <summary>
     /// effect 嘲讽
