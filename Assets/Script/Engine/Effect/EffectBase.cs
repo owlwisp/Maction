@@ -30,12 +30,14 @@ namespace Assets.Script.Engine.Effect
         #region <属性>
         // 全局id
         public int Id { get; set; }
+        // 模版id
+        public int TemplateId { get; set; }
         // 类型
         EffectType Type { get; set; }
         // 来源类型
         EffectSourceType SourceType { get; set; }
-        // 合并方式
-        EffectMergeType MergeType { get; set; }
+        // 相同模版id是重置还是追加
+        EffectResetType ResetType { get; set; }
         // 优先级
         public int Priority { get; set; }
         //  拥有者id
@@ -54,13 +56,10 @@ namespace Assets.Script.Engine.Effect
         // 第一目标id
         public int TargetId { get; set; }
 
-        // 这块还需要在多考虑下
         // 目标互斥列表
         List<string> TargetExclusiveIds { get; set; }
-        // 目标替代列表
+        // 可以被替代的模版列表
         List<string> TargetReplaceIds { get; set; }
-        // 同一目标id是否重置
-        bool TargetReset { get; set; }
 
         #endregion <属性>
 
@@ -133,52 +132,56 @@ namespace Assets.Script.Engine.Effect
         }
 
         // 合并effect
-        public void Merge(EffectBase effect)
+        public bool Merge(EffectBase effect)
         {
-            // 合并属性
-            switch (effect.MergeType)
+            // 如果模版id相同则判断是否重置
+            if (TemplateId == effect.TemplateId)
             {
-                case EffectMergeType.kReset:
-                    // 重置
-                    ResetEffect(effect);
-                    break;
-                case EffectMergeType.kAdd:
-                    // 加
-                    AddEffect(effect);
-                    break;
-                case EffectMergeType.kExclusive:
-                    // 互斥
-                    ExclusiveEffect(effect);
-                    break;
-           
-                default:
-                    break;
+                switch (ResetType)
+                {
+                    case EffectResetType.Reset:
+                        // 重置
+                        EffectMergeReset(effect);
+                        break;
+                    case EffectResetType.Append:
+                        // 追加
+                        EffectMergeAppend(effect);
+                        break;
+                }
+                return true;
             }
+     
+            return false;
         }
 
+
+
         // 重置
-        void ResetEffect(EffectBase effect)
+        void EffectMergeReset(EffectBase effect)
         {
             // 重置
        
         }
 
         // 加
-        void AddEffect(EffectBase effect)
+        void EffectMergeAppend(EffectBase effect)
         {
             // 加
         }
 
-        // 互斥
-        void ExclusiveEffect(EffectBase effect)
+        // 是否互斥
+        public bool IsExclusive(EffectBase effect)
         {
-            // 互斥
-            // 判断标签tags是否互斥
-
-
+            // 是否互斥
+            return TargetExclusiveIds.Contains(effect.TemplateId);
         }
 
-
+        // 是否可以被替代
+        public bool IsReplace(EffectBase effect)
+        {
+            // 是否可以被替代
+            return TargetReplaceIds.Contains(effect.TemplateId);
+        }
         #endregion <方法>
 
         #region <事件>

@@ -91,6 +91,11 @@ namespace Assets.Script.Core.Pool
             }
             _pool.Clear();
         }
+
+        public void Destroy()
+        {
+            _pool = null;
+        }
         #endregion <方法>
 
         #region <事件>

@@ -45,6 +45,20 @@ namespace Assets.Script.Engine.Effect
     #endregion <EffectType>
 
 
+    #region <EffectResetType>
+    /// <summary>
+    /// effect 相同模版id处理方式
+    /// </summary>
+    public enum EffectResetType
+    {
+        kNone = 0,
+        // 重置
+        kReset = 1,
+        // 叠加
+        kAppend = 2,
+    }   
+    #endregion <EffectResetType>
+
     #region <EffectMergeType>
     /// <summary>
     /// effect 合并方式

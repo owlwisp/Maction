@@ -53,7 +53,7 @@ namespace Assets.Script.Engine.Effect.Node
         }
 
         // 获取类型
-        public EffectNodeType GetType()
+        public new EffectNodeType GetType()
         {
             return Type;
         }

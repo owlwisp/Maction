@@ -20,24 +20,36 @@ using System.Collections.Generic;
 namespace Assets.Script.Engine.Base
 {
     /// <summary>
-    /// effect 管理类
+    /// container 管理类
     /// </summary>
-    public class Container<T>
+    public class Container<T> :IManager
     {
         #region <属性>
         private static Container<T> m_instance;
         //存储T的链表
-        private List<T> m_list = new List<T>();
+        private List<T> m_list ;
         //按照id存储列表的字典
-        private Dictionary<int, List<T>> m_dict = new Dictionary<int, List<T>>();
+        private Dictionary<int, List<T>> m_dict ;
 
         #endregion <属性>
 
         #region <方法>
         // 第一次创建出来 之后调用函数
-        public void OnInit()
+        public void Init()
         {
+            m_list = new List<T>();
+            m_dict = new Dictionary<int, List<T>>();
+        }
 
+        public void Release(){
+            m_list.Clear();
+            m_dict.Clear();
+
+        }
+
+        public void Destroy(){
+            m_list = null;
+            m_dict = null;
         }
 
         //单例模式实例
@@ -79,6 +91,17 @@ namespace Assets.Script.Engine.Base
                 }
             }
             return default(T);
+        }
+
+        // 根据筛选函数获取链表
+        public List<T> GetList(System.Func<T,bool> func){
+            List<T> list = new List<T>();
+            foreach(T t in m_list){
+                if(func(t)){
+                    list.Add(t);
+                }
+            }
+            return list;
         }
 
   

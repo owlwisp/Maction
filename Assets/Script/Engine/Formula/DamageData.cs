@@ -56,7 +56,7 @@ namespace Assets.Script.Engine.Formula
         }
 
         // 获取对象类型
-        public string GetType(){
+        public new string GetType(){
             return "DamageData";
         }
 

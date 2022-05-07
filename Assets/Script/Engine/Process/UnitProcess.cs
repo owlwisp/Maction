@@ -31,13 +31,31 @@ namespace Assets.Script.Engine.Process
 
         #region <方法>
         public static void OnInit(){
+            MPool<EffectBase>.Instance.Init(24);
             MPool<DamageData>.Instance.Init(12);
-            MPool<AgentProperty>.Instance.Init(24);
+            MPool<AgentProperty>.Instance.Init(48);
+            
+            MSingleton<EffectManager>.Instance.Init();
+            Container<EffectBase>.Instance.Init();
         }
 
-        public static void OnDestroy(){
+        // 清理
+        public static void OnClear(){
+            MPool<EffectBase>.Instance.Clear();
             MPool<DamageData>.Instance.Clear();
             MPool<AgentProperty>.Instance.Clear();
+
+            Container<EffectBase>.Instance.Release();
+            MSingleton<EffectManager>.Instance.Release();
+        }
+        
+        public static void OnDestroy(){
+
+            MPool<EffectBase>.Instance.Destroy();
+            MPool<DamageData>.Instance.Destroy();
+            MPool<AgentProperty>.Instance.Destroy();
+            Container<EffectBase>.Instance.Destroy();
+            MSingleton<EffectManager>.Instance.Destroy(); 
         }
         
         #endregion <方法>

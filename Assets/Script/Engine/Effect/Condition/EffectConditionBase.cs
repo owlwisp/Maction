@@ -42,7 +42,7 @@ namespace Assets.Script.Engine.Effect.Condition
         }
 
         // 获取类型
-        public EffectConditionType GetType()
+        public new EffectConditionType GetType()
         {
             return Type;
         }
