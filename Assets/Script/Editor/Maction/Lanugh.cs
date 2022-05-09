@@ -31,31 +31,31 @@ namespace Assets.Script.Editor.Maction
     public class Lanugh : OdinEditorWindow
     {
         #region <属性>
-        public static object ConfigManager { get; private set; }
         #endregion <属性>
 
         #region <方法>
         
 
-        [MenuItem("Tools/技能编辑器基础配置")]
+        [MenuItem("Tools/技能编辑器基础配置/Open &1")]
         private static void OpenConfigWinow()
         {
             LoadConfig();
-            GetWindow<ConfigWindow>("技能编辑器").Show();
+            GetWindow<ConfigWindow>("编辑器配置").Show();
         }
 
-        [MenuItem("Tools/技能编辑器效果部分")]
+        [MenuItem("Tools/技能编辑器效果部分/Open &2")]
         private static void OpenEffectWinow()
         {
             LoadConfig();
-            GetWindow<EffectWindow>("技能编辑器").Show();
+            GetWindow<ConfigWindow>("效果编辑器").Show();
+     
         }
 
-        [MenuItem("Tools/技能编辑器动作部分")]
+        [MenuItem("Tools/技能编辑器动作部分/Open &3")]
         private static void OpenActionWinow()
         {
             LoadConfig();
-            GetWindow<ActionWindow>("技能编辑器").Show();
+            GetWindow<ActionWindow>("动作编辑器").Show();
         }
         //-------------------------------基础部分----------------------------------//
         private static void LoadConfig()
