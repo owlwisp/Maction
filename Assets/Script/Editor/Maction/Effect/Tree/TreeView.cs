@@ -1,33 +1,35 @@
-#region << 文 件 注 释 >>
+﻿#region << 文 件 注 释 >>
 /*----------------------------------------------------------------
  * 公司名称：TuYooGame
- * 命名空间：Assets.Script.Editor.Maction.Constant
- * 文件名：Constant
+ * 命名空间：Assets.Script.Editor.Maction.Effect
+ * 文件名：TreeView
  * 
  * 创建者：owlwisp
  * 电子邮箱：owlwisp@163.com
- * 创建时间：2022/5/9 10:17:23
+ * 创建时间：2022/5/9 10:40:23
  * 描述：
  *
  * ---------------------------------------------------------------*/
 
 #endregion << 文 件 注 释 >>
 
+using System;
 
-
-namespace Assets.Script.Editor.Maction.Constant
+namespace Assets.Script.Editor.Maction.Effect.Tree
 {
     /// <summary>
-    /// 配置类
+    /// effect 树状界面
     /// </summary>
-    public class Constant 
+    ///
+    [Serializable]
+    public class TreeView
     {
         #region <属性>
+        public string Id;
+        public string Name;
         #endregion <属性>
 
         #region <方法>
-        // 排序最高的优先级
-        public const int kPropertyOrder = 999;
         #endregion <方法>
 
         #region <事件>

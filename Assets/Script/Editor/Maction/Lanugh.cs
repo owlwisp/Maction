@@ -47,7 +47,7 @@ namespace Assets.Script.Editor.Maction
         private static void OpenEffectWinow()
         {
             LoadConfig();
-            GetWindow<ConfigWindow>("效果编辑器").Show();
+            GetWindow<EffectWindow>("效果编辑器").Show();
      
         }
 
