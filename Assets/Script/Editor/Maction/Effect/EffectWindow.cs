@@ -34,38 +34,46 @@ namespace Assets.Script.Editor.Maction.Effect
         [HorizontalGroup("Split")]
         [BoxGroup("Split/Effect 列表"),PropertyOrder(-Constants.kPropertyOrder)]
         [Button]
+        [HorizontalGroup("Split/Effect 列表/Button")]
         private void New()
         {
-            // var effectTitle = new EffectTitle();
-            // EffectList.Add(effectTitle);
+            var effectTitle = new EffectTitle();
+            EffectList.Add(effectTitle);
         }
 
         [BoxGroup("Split/Effect 列表")]
+        [HorizontalGroup("Split/Effect 列表/Button")]
         [Button]
         private void Load()
         {
   
         }
+
+        [BoxGroup("Split/Effect 列表")]
+        [HorizontalGroup("Split/Effect 列表/Button")]
+        [Button]
+        private void SaveAll()
+        {
+  
+        }
+
         [BoxGroup("Split/Effect 列表")]
         [Searchable,PropertyOrder(Constants.kPropertyOrder)]
         public List<EffectTitle> EffectList = new List<EffectTitle>();
 
+        // [TitleGroup("Total")]
+        // [HorizontalGroup("Total/Midel")]
+        // [VerticalGroup("Total/Split/Middle")]
+        [BoxGroup("Split/Effect 树编辑区")]
+        public int BoxC1;
+        // TreeView tree;
 
+        // [TitleGroup("Total")]
+        // [HorizontalGroup("Total/Right")]
+        // [VerticalGroup("Total/Split/Right")]
+        [BoxGroup("Split/Effect 结点编辑区")]
+        public int BoxC;
 
-
-
-    // [TitleGroup("Total")]
-    // [HorizontalGroup("Total/Midel")]
-    // [VerticalGroup("Total/Split/Middle")]
-    [BoxGroup("Split/Effect 树编辑区")]
-    public int BoxC1;
-    // TreeView tree;
-
-    // [TitleGroup("Total")]
-    // [HorizontalGroup("Total/Right")]
-    // [VerticalGroup("Total/Split/Right")]
-    [BoxGroup("Split/Effect 结点编辑区")]
-    public int BoxC;
         // [TitleGroup("Effect List")]
         // [VerticalGroup("Effect List/Split/Left/New")]
         // // [BoxGroup("Multiple Stacked Boxes/Split/Right/Box C")]
