@@ -14,25 +14,55 @@
 #endregion << 文 件 注 释 >>
 
 
+using Assets.Script.Engine.Ecs.Const;
+using Assets.Script.Engine.Ecs.Interface;
+
 namespace Assets.Script.Engine.Ecs.System
 {
     /// <summary>
     /// 系统 基类
     /// </summary>
-    public class BaseSystem : BaseSystem
+    public class BaseSystem : ISystem
     {
         #region <属性>
+
+        // 系统类型
+        SystemType Type{ get; set; }
+        // 顺序
+        public int Order { get; set; }
+
         #endregion <属性>
 
         #region <方法>
-
-        // 执行
-        public  void Execute()
+        // 处理action
+        public virtual void HandleAction()
         {
 
         }
-
         
+        //// 处理消息
+        //public virtual void HandleMessage(Message message)
+        //{
+            
+        //}
+
+        //// 处理帧事件
+        //public virtual void HandleFrame(FrameEvent frameEvent)
+        //{
+            
+        //}
+
+        // 更新
+        public virtual void Tick(float dt)
+        {
+            
+        }
+
+        public void Excute()
+        {
+            throw new global::System.NotImplementedException();
+        }
+
         #endregion <方法>
 
         #region <事件>

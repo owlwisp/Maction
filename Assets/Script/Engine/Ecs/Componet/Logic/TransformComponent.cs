@@ -14,12 +14,14 @@
 #endregion << 文 件 注 释 >>
 
 
+using Assets.Script.Engine.Ecs.Base;
+
 namespace Assets.Script.Engine.Ecs.Component.Logic
 {
     /// <summary>
     /// 位置信息
     /// </summary>
-    public struct TransformComponent : BaseComponent
+    public class TransformComponent : BaseComponent
     {
         #region <属性>
         // 坐标
@@ -30,5 +32,12 @@ namespace Assets.Script.Engine.Ecs.Component.Logic
         public Vec4 Rotation ;
         
         #endregion <属性>
+
+        #region <方法>
+        public new string GetType(){
+            return "TransformComponent";
+        }
+        #endregion <方法>
+
     }
 }

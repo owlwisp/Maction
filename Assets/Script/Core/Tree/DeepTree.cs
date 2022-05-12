@@ -28,49 +28,49 @@ namespace Assets.Script.Code.Tree
         public delegate void DeepTreeCompleteDelegate();
 
         // 拥有者id，这里不想采用闭包的方式，所以用int
-        private int m_ownerId;
+        private int _ownerId;
 
-        private bool m_tickEnable;
+        private bool _tickEnable;
         // 获取目标函数
-        public GetDeepTreeAgentDelegate m_delegate;
+        public GetDeepTreeAgentDelegate _delegate;
         // 根节点
-        private DeepTreeLeaf m_root;
+        private DeepTreeLeaf _root;
         // 结束回调函数
-        private DeepTreeCompleteDelegate m_completeDelegate;
+        private DeepTreeCompleteDelegate _completeDelegate;
         #endregion <属性>
 
         #region <方法>
         // 第一次创建出来 之后调用函数
         public void OnInit(IDeepTreeAgent target, DeepTreeCompleteDelegate completeDelegate){
-            m_tickEnable = false;
-            m_ownerId = target.GetDeepTreeAgentId();
-            m_delegate = target.GetDeepTreeAgent();
-            m_completeDelegate = completeDelegate;
-            m_root = new DeepTreeLeaf();
-            m_root.OnInit(m_completeDelegate);
+            _tickEnable = false;
+            _ownerId = target.GetDeepTreeAgentId();
+            _delegate = target.GetDeepTreeAgent();
+            _completeDelegate = completeDelegate;
+            _root = new DeepTreeLeaf();
+            _root.OnInit( _completeDelegate);
         }
 
         public IDeepTreeAgent GetOwner(){
-            return m_delegate(m_ownerId);
+            return _delegate( _ownerId);
         }
 
         // 遍历结点
         public void Tick(){
-            if(m_tickEnable){
-                m_root.Tick(GetOwner());
+            if(_tickEnable){
+                _root.Tick(GetOwner());
             }
         }
 
         // 执行深度树
         public void Execute(){
-            m_root.Execute(GetOwner());
-            m_tickEnable = true;
+            _root.Execute(GetOwner());
+            _tickEnable = true;
         }
 
         // 中断效果
         public void Interrupt(){
-            m_tickEnable = false;
-            m_root.Interrupt(GetOwner());
+            _tickEnable = false;
+            _root.Interrupt(GetOwner());
         }
 
         #endregion <方法>

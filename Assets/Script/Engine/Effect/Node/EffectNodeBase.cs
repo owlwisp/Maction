@@ -35,23 +35,23 @@ namespace Assets.Script.Engine.Effect.Node
         int Delay { get; set; }
 
         // 当前次数
-        int m_currentCount;
+        int _currentCount;
         // 当前时间
-        int m_currentDelay ;
+        int _currentDelay ;
         // 是否开启时间遍历
-        bool m_isTick;
+        bool _isTick;
 
         // 结束
-        bool m_isFinish;
+        bool _isFinish;
         // 完成回调函数
-        DeepTreeCompleteDelegate m_completeDelegate;
+        DeepTreeCompleteDelegate _completeDelegate;
         #endregion <属性>
 
         #region <方法>
         // 第一次创建出来 之后调用函数
         public void OnInit(){
 
-            m_isTick = Count != 0;
+            _isTick = Count != 0;
             Type = EffectNodeType.kNone;
         }
 
@@ -64,13 +64,13 @@ namespace Assets.Script.Engine.Effect.Node
         // 设置完成回调函数
         public void SetCompleteDelegate(DeepTreeCompleteDelegate completeDelegate)
         {
-            m_completeDelegate = completeDelegate;
+            _completeDelegate = completeDelegate;
         }
         public virtual void Execute(IDeepTreeAgent owner)
         {
-            m_currentCount = Count;
-            m_currentDelay = Delay;
-            m_isFinish = false;
+            _currentCount = Count;
+            _currentDelay = Delay;
+            _isFinish = false;
         }
         // 中断
         public virtual void Interrupt(IDeepTreeAgent owner)
@@ -85,24 +85,24 @@ namespace Assets.Script.Engine.Effect.Node
 
         public virtual bool IsTick()
         {
-            return m_isTick;
+            return _isTick;
         }
         public virtual void Tick(IDeepTreeAgent owner)
         {
-            if (m_currentCount > 0 || m_currentCount == -1)
+            if ( _currentCount > 0 || _currentCount == -1)
             {
-                m_currentDelay -= 1;
+                _currentDelay -= 1;
 
-                if (m_currentDelay <= 0)
+                if ( _currentDelay <= 0)
                 {
                     DoAction(owner);
-                    m_currentDelay = Delay;
-                    if(m_currentCount > 1 ){
-                        if(m_currentCount == 1){
+                    _currentDelay = Delay;
+                    if( _currentCount > 1 ){
+                        if( _currentCount == 1){
                             // 设置结点结束
                             Finish();
                         }
-                        m_currentCount -= 1;
+                        _currentCount -= 1;
                     }
              
                 }
@@ -112,10 +112,10 @@ namespace Assets.Script.Engine.Effect.Node
         // 结束结点
         public virtual void Finish()
         {
-            m_currentCount = 0;
-            m_currentDelay = 0;
-            m_isFinish = true;
-            m_completeDelegate();
+            _currentCount = 0;
+            _currentDelay = 0;
+            _isFinish = true;
+            _completeDelegate();
         }
             
 

@@ -19,12 +19,17 @@ namespace Assets.Script.Engine.Ecs.Component.Logic
     /// <summary>
     /// 健康组件
     /// </summary>
-    public struct HealthComponent : BaseComponent
+    public class HealthComponent : BaseComponent
     {
         #region <属性>
         // 血量
         public int Health ;
         
         #endregion <属性>
+        #region <方法>
+        public string GetType(){
+            return "HealthComponent";
+        }
+        #endregion <方法>
     }
 }

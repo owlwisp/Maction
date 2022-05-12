@@ -32,8 +32,8 @@ namespace Assets.Script.Engine.Timer
         #endregion <常量>
 
         #region <变量>
-        private float m_deltaTime;
-        private float m_lastTime;
+        private float _deltaTime;
+        private float _lastTime;
 
         // 当前最近时间
         private float _nextTime;

@@ -30,26 +30,26 @@ namespace Assets.Script.Engine.Effect
     {
         #region <属性>
         // 按人物id存储的effect数组字典
-        private Dictionary<int, List<EffectBase>> m_effectDic;
+        private Dictionary<int, List<EffectBase>> _effectDic;
         // 将要移除的buff列表
-        private List<EffectBase> m_removeList;
+        private List<EffectBase> _removeList;
         
         #endregion <属性>
 
         #region <方法>
         public void Init(){
-            m_effectDic = new Dictionary<int, List<EffectBase>>();
-            m_removeList = new List<EffectBase>();
+            _effectDic = new Dictionary<int, List<EffectBase>>();
+            _removeList = new List<EffectBase>();
         }
 
         public void Release(){ 
-            m_effectDic.Clear();
-            m_removeList.Clear();
+            _effectDic.Clear();
+            _removeList.Clear();
         }
 
         public void Destroy(){
-            m_effectDic = null;
-            m_removeList = null;
+            _effectDic = null;
+            _removeList = null;
         }
 
         // 按优先级排序
@@ -60,37 +60,37 @@ namespace Assets.Script.Engine.Effect
         // 给某人添加buff
         public void AddEffect(int id, EffectBase effect)
         {
-            if (m_effectDic.ContainsKey(id))
+            if ( _effectDic.ContainsKey(id))
             {
-                // 遍历检查 m_effectDic[id] 中是否有buff可以merge
-                for (int i = 0; i < m_effectDic[id].Count; i++)
+                // 遍历检查 _effectDic[id] 中是否有buff可以merge
+                for (int i = 0; i < _effectDic[id].Count; i++)
                 {
-                    if (m_effectDic[id][i].Merge(effect))
+                    if ( _effectDic[id][i].Merge(effect))
                     {
                         return;
                     }
-                    else if (m_effectDic[id][i].IsExclusive(effect))
+                    else if ( _effectDic[id][i].IsExclusive(effect))
                     {
                         // 互斥的直接返回
                         return ;
                     }
-                    else if (m_effectDic[id][i].IsReplace(effect))
+                    else if ( _effectDic[id][i].IsReplace(effect))
                     {
                         //TODO: 这里需要看触发情况的 Interrupt 怎么处理
-                        RemoveEffect(id, m_effectDic[id][i]);
+                        RemoveEffect(id, _effectDic[id][i]);
                     }
                 }
     
-                m_effectDic[id].Add(effect);
+                _effectDic[id].Add(effect);
                 // 按照buff的优先级排序
-                m_effectDic[id].Sort(SortByPriority);
+                _effectDic[id].Sort(SortByPriority);
 
             }
             else
             {
                 List<EffectBase> list = new List<EffectBase>();
                 list.Add(effect);
-                m_effectDic.Add(id, list);
+                _effectDic.Add(id, list);
             }
             // TODO: 检查这里需要处理buff的merge等相关逻辑
             Container<EffectBase>.Instance.Add(effect);
@@ -99,24 +99,24 @@ namespace Assets.Script.Engine.Effect
         // 给某人移除buff
         public void RemoveEffect(int id, EffectBase effect)
         {
-            if (m_effectDic.ContainsKey(id))
+            if ( _effectDic.ContainsKey(id))
             {
-                m_effectDic[id].Remove(effect);
+                _effectDic[id].Remove(effect);
             }
-            m_removeList.Add(effect);
+            _removeList.Add(effect);
             
         }
 
         // 移除某人所有buff
         public void RemoveAllEffect(int id)
         {
-            if (m_effectDic.ContainsKey(id))
+            if ( _effectDic.ContainsKey(id))
             {
-                foreach (var effect in m_effectDic[id])
+                foreach (var effect in _effectDic[id])
                 {
-                    m_removeList.Add(effect);
+                    _removeList.Add(effect);
                 }
-                m_effectDic[id].Clear();
+                _effectDic[id].Clear();
             }
         }
 
@@ -124,7 +124,7 @@ namespace Assets.Script.Engine.Effect
         public void Tick()
         {
             // 更新buff
-            foreach (var kv in m_effectDic)
+            foreach (var kv in _effectDic)
             {
                 foreach (var effect in kv.Value)
                 {
@@ -132,13 +132,13 @@ namespace Assets.Script.Engine.Effect
                 }
             }
             // 移除buff
-            foreach (var effect in m_removeList)
+            foreach (var effect in _removeList)
             {
                 effect.Interrupt();
                 MPool<EffectBase>.Instance.Recycle(effect);
                 Container<EffectBase>.Instance.Remove(effect);
             }
-            m_removeList.Clear();
+            _removeList.Clear();
         }
 
         #endregion <方法>

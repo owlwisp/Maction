@@ -32,7 +32,7 @@ namespace Assets.Script.Engine.Effect.Node.Base
         public int Value { get; set; }
 
         // 增加属性次数
-        public int m_count ;
+        public int _count ;
         #endregion <属性>
 
         #region <方法>
@@ -45,7 +45,7 @@ namespace Assets.Script.Engine.Effect.Node.Base
         public override void Execute(IDeepTreeAgent owner)
         {
             base.Execute(owner);
-            m_count = 0;
+            _count = 0;
         }
         public override void DoAction(IDeepTreeAgent owner)
         {
@@ -55,7 +55,7 @@ namespace Assets.Script.Engine.Effect.Node.Base
             {
                 return;
             }
-            m_count += 1;
+            _count += 1;
             target.AddProperty(Property, Value);
         }
 
@@ -69,8 +69,8 @@ namespace Assets.Script.Engine.Effect.Node.Base
             {
                 return;
             }
-            target.AddProperty(Property, -Value * m_count );
-            m_count = 0;
+            target.AddProperty(Property, -Value * _count );
+            _count = 0;
         }
         
         #endregion <方法>

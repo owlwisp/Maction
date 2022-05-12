@@ -27,6 +27,7 @@ namespace Assets.Script.Engine.Ecs.Interface
 
         #region <方法>
         // 这可以考虑增加内存映射接口
+        public string GetType();
         #endregion <方法>
 
         #region <事件>

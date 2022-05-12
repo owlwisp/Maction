@@ -29,31 +29,31 @@ namespace Assets.Script.Code.Tree
         // 是否是条件节点
         public bool IsConditionNode { get; set; }
    
-        IDeepTreeNode m_node;
+        IDeepTreeNode _node;
 
-        IDeepTreeCondition m_condition;
-        List<DeepTreeLeaf> m_children;
+        IDeepTreeCondition _condition;
+        List<DeepTreeLeaf> _children;
         //已经完成的结点个数
-        int m_completeCount;
+        int _completeCount;
 
         // 结束回调
-        DeepTreeCompleteDelegate m_completeDelegate;
+        DeepTreeCompleteDelegate _completeDelegate;
         #endregion <属性>
 
         #region <方法>
         // 第一次创建出来 之后调用函数
         public void OnInit(DeepTreeCompleteDelegate completeDelegate = null){
             IsConditionNode = false;
-            m_completeDelegate = completeDelegate;
+            _completeDelegate = completeDelegate;
         }
 
         // 增加子结点   
         public void AddChild(DeepTreeLeaf node){
-            m_children.Add(node);
+            _children.Add(node);
             node.SetCompleteDelegate(delegate {
-                m_completeCount += 1;
-                if(m_completeCount == m_children.Count){
-                    m_completeDelegate();
+                _completeCount += 1;
+                if( _completeCount == _children.Count){
+                    _completeDelegate();
                 }
             });
             IsConditionNode = true;
@@ -61,36 +61,36 @@ namespace Assets.Script.Code.Tree
 
         // 设置条件
         public void SetCondition(IDeepTreeCondition condition){
-            m_condition = condition;
+            _condition = condition;
             IsConditionNode = true;
 
-            if(m_children == null){
-                m_children = new List<DeepTreeLeaf>();
+            if( _children == null){
+                _children = new List<DeepTreeLeaf>();
             }
         }
         // 设置结点
         public void SetNode(IDeepTreeNode node){
-            m_node = node;
+            _node = node;
             IsConditionNode = false;
-            m_children.Clear();
-            m_children = null ;
+            _children.Clear();
+            _children = null ;
             
-            m_node.SetCompleteDelegate(m_completeDelegate);
+            _node.SetCompleteDelegate( _completeDelegate);
         }
         // 设置完成回调函数
         public void SetCompleteDelegate(DeepTreeCompleteDelegate completeDelegate){
-            m_completeDelegate = completeDelegate;
+            _completeDelegate = completeDelegate;
         }
  
         // 执行结点
         public void Execute(IDeepTreeAgent owner)
         {
-            m_completeCount = 0;
+            _completeCount = 0;
             if (IsConditionNode)
             {
-                if (m_condition.IsTrue(owner))
+                if ( _condition.IsTrue(owner))
                 {
-                    foreach (var child in m_children)
+                    foreach (var child in _children)
                     {
                         child.Execute(owner);
                     }
@@ -98,7 +98,7 @@ namespace Assets.Script.Code.Tree
             }
             else
             {
-                m_node.Execute(owner);
+                _node.Execute(owner);
             }
         }
 
@@ -107,14 +107,14 @@ namespace Assets.Script.Code.Tree
         {
             if (IsConditionNode)
             {
-                foreach (var child in m_children)
+                foreach (var child in _children)
                 {
                     child.Interrupt(owner);
                 }
             }
             else
             {
-                m_node.Interrupt(owner);
+                _node.Interrupt(owner);
             }
         }
 
@@ -123,18 +123,18 @@ namespace Assets.Script.Code.Tree
         {
             if (IsConditionNode)
             {
-                if (m_condition.IsTrue(owner))
+                if ( _condition.IsTrue(owner))
                 {
-                    foreach (var child in m_children)
+                    foreach (var child in _children)
                     {
                         child.Tick(owner);
                     }
                 }
             }
             else{
-                if (m_node.IsTick())
+                if ( _node.IsTick())
                 {
-                    m_node.Tick(owner);
+                    _node.Tick(owner);
                 }
             }
         }
@@ -142,12 +142,12 @@ namespace Assets.Script.Code.Tree
         public void Complete(){
             if (IsConditionNode)
             {
-                m_completeDelegate();
+                _completeDelegate();
             }
             else{
-                if (m_completeDelegate != null)
+                if ( _completeDelegate != null)
                 {
-                    m_completeDelegate();
+                    _completeDelegate();
                 }
             }
         }

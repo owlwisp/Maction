@@ -31,7 +31,7 @@ namespace Assets.Script.Engine.Effect.Node.Base
         #region <属性>
         // 按照百分比算
         public int Rate { get; set; }
-        private int m_attack;
+        private int _attack;
         #endregion <属性>
 
         #region <方法>
@@ -52,7 +52,7 @@ namespace Assets.Script.Engine.Effect.Node.Base
                 return;
             }
             var property = agent.GetProperty(AgentPropertyType.kAttack);
-            m_attack = property.Value * Rate;
+            _attack = property.Value * Rate;
         }
         public override void DoAction(IDeepTreeAgent owner)
         {
@@ -65,7 +65,7 @@ namespace Assets.Script.Engine.Effect.Node.Base
 
             var defenderData = target.GetDamageDataForDefender();
             var attackerData = MPool<DamageData>.Instance.Get();
-            attackerData.AddProperty(AgentPropertyType.kAttack,m_attack);
+            attackerData.AddProperty(AgentPropertyType.kAttack, _attack);
             
             // todo:这里有待商榷
             var damage = DamageFormula.Calculations( attackerData, defenderData);

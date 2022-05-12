@@ -28,7 +28,7 @@ namespace Assets.Script.Engine.Effect.Condition.Base
     {
         #region <属性>
         // 阵营
-        private int m_level;
+        private int _level;
         
         #endregion <属性>
 
@@ -44,7 +44,7 @@ namespace Assets.Script.Engine.Effect.Condition.Base
             EffectBase effect = owner as EffectBase;
             AgentBase target = Container<AgentBase>.Instance.Get(effect.TargetId);
 
-            return AgentBase.IsValid(target) && target.Level >= m_level;
+            return AgentBase.IsValid(target) && target.Level >= _level;
         }
         
         #endregion <方法>

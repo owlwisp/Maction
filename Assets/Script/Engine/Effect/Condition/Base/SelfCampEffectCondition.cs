@@ -28,7 +28,7 @@ namespace Assets.Script.Engine.Effect.Condition.Base
     {
         #region <属性>
         // 阵营
-        private AgentCampType m_campType;
+        private AgentCampType _campType;
         
         #endregion <属性>
 
@@ -47,7 +47,7 @@ namespace Assets.Script.Engine.Effect.Condition.Base
             var agent = Container<AgentBase>.Instance.Get(effect.OwnerId);
             if (owner != null)
             {
-                m_campType = agent.Camp;
+                _campType = agent.Camp;
             }
         }
 
@@ -56,7 +56,7 @@ namespace Assets.Script.Engine.Effect.Condition.Base
             var effect = owner as EffectBase;
             var target = Container<AgentBase>.Instance.Get(effect.OwnerId);
 
-            return AgentBase.IsValid(target) && target.IsSameCamp(m_campType);
+            return AgentBase.IsValid(target) && target.IsSameCamp(_campType);
         }
 
         #endregion <方法>

@@ -19,7 +19,7 @@ namespace Assets.Script.Engine.Ecs.Component.Logic
     /// <summary>
     /// 健康组件
     /// </summary>
-    public struct GameInputComponent : BaseComponent
+    public class GameInputComponent : BaseComponent
     {
         #region <属性>
 
@@ -27,6 +27,9 @@ namespace Assets.Script.Engine.Ecs.Component.Logic
         #endregion <属性>
 
         #region <方法>
+        public string GetType(){
+            return "GameInputComponent";
+        }
         #endregion <方法>
 
         #region <事件>

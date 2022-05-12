@@ -14,6 +14,9 @@
 #endregion << 文 件 注 释 >>
 
 
+using Assets.Script.Engine.Ecs.Core.Module;
+
+
 namespace Assets.Script.Engine.Ecs.Core
 {
     /// <summary>
@@ -23,26 +26,20 @@ namespace Assets.Script.Engine.Ecs.Core
     {
         #region <属性>
         // 基础个数
-        private int m_count ;
-        // 实体对象部分
-        NativeArray<IEntity> m_entities;
-        // 组件部分
-        NativeArray<IComponent> m_componentess;
-        // 系统部分
-        // NativeArray<Entity> entities;
-        List<IEntity> m_entityList;
+        private int _count ;
+
 
         // 实体模块
-        private EntityModule m_entityModule;
+        private EntityModule _entityModule;
         // 组件模块
-        private ComponentModule m_componentModule;
+        private ComponentModule _componentModule;
         // 系统模块
-        private SystemModule m_systemModule;
+        private SystemModule _systemModule;
         // 统一处理模块
-        private UnitilyModule m_unitilyModule;
+        private UnitilyModule _unitilyModule;
         
         // 是否开启时间更新
-        bool m_isUpdate = false;
+        bool _isUpdate = false;
 
 
 
@@ -53,41 +50,41 @@ namespace Assets.Script.Engine.Ecs.Core
         // 初始化
         public void Init()
         {
-            m_entityModule = new EntityModule();
-            m_componentModule = new ComponentModule();
-            m_systemModule = new SystemModule();
-            m_unitilyModule = new UnitilyModule();
+            _entityModule = new EntityModule();
+            _componentModule = new ComponentModule();
+            _systemModule = new SystemModule();
+            _unitilyModule = new UnitilyModule();
 
-            m_entityModule.Init();
-            m_componentModule.Init();
-            m_systemModule.Init();
-            m_unitilyModule.Init();
-            
+            _entityModule.Init();
+            _componentModule.Init();
+            _systemModule.Init();
+            _unitilyModule.Init();
+
         }
 
         // 释放
         public void Dispose()
         {
-            m_entityModule.Dispose();
-            m_componentModule.Dispose();
-            m_systemModule.Dispose();
-            m_unitilyModule.Dispose();
+            _entityModule.Dispose();
+            _componentModule.Dispose();
+            _systemModule.Dispose();
+            _unitilyModule.Dispose();
 
-            m_entityModule = null;
-            m_componentModule = null;
-            m_systemModule = null;
-            m_unitilyModule = null;
+            _entityModule = null;
+            _componentModule = null;
+            _systemModule = null;
+            _unitilyModule = null;
         }
 
         // 更新函数
         public void Update()
         {
             // 更新系统
-            if (m_isUpdate)
+            if (_isUpdate)
             {
-                // for (int i = 0; i < m_count; i++)
+                // for (int i = 0; i < _count; i++)
                 // {
-                //     m_entities[i].Update();
+                //     _entities[i].Update();
                 // }
             }
         }

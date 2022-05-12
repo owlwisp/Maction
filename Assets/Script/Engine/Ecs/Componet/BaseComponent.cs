@@ -14,19 +14,26 @@
 #endregion << 文 件 注 释 >>
 
 
+using Assets.Script.Engine.Ecs.Interface;
+
 namespace Assets.Script.Engine.Ecs.Component
 {
     /// <summary>
     /// 组件基类
     /// </summary>
-    public struct BaseComponent : IComponent
+    public class BaseComponent : IComponent
     {
         #region <属性>
         //唯一id
         public int Id { get; set; }
         // 归属的entity的id
         public int EntityId { get; set; }
-        
+
+        string IComponent.GetType()
+        {
+            throw new global::System.NotImplementedException();
+        }
+
         #endregion <属性>
 
         #region <方法>

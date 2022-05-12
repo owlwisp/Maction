@@ -19,7 +19,7 @@ namespace Assets.Script.Engine.Ecs.Component.Logic
     /// <summary>
     /// buff 相关组件
     /// </summary>
-    public struct BuffComponent : BaseComponent
+    public class BuffComponent : BaseComponent
     {
         #region <属性>
 
@@ -27,12 +27,10 @@ namespace Assets.Script.Engine.Ecs.Component.Logic
         #endregion <属性>
 
         #region <方法>
+        public string GetType(){
+            return "BuffComponent";
+        }
         #endregion <方法>
 
-        #region <事件>
-        #endregion <事件>
-
-        #region <索引器>
-        #endregion <索引器>
     }
 }

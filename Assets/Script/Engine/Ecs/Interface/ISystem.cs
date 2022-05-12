@@ -26,8 +26,16 @@ namespace Assets.Script.Engine.Ecs.Interface
         #endregion <属性>
 
         #region <方法>
-                // 执行
-        public  void Execute();
+        public  void HandleAction();
+        
+        //// 处理消息
+        //public  void HandleMessage(Message message);
+        //// 处理帧事件
+        //public void HandleFrame(FrameEvent frameEvent);
+        // 更新
+        public void Tick(float dt);
+        // 执行
+        public void Excute();
         #endregion <方法>
 
         #region <事件>
