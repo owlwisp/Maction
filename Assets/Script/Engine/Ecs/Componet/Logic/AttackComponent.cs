@@ -27,6 +27,9 @@ namespace Assets.Script.Engine.Ecs.Component.Logic
         #endregion <属性>
 
         #region <方法>
+        public AttackComponent(int id , int entityId):base(id, entityId){
+            
+        }
         public new string GetType(){
             return "AttackComponent";
         }

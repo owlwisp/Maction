@@ -15,6 +15,8 @@
 
 
 
+using Assets.Script.Engine.Ecs.Core.Module;
+
 namespace Assets.Script.Engine.Ecs.Interface
 {
     /// <summary>
@@ -27,7 +29,7 @@ namespace Assets.Script.Engine.Ecs.Interface
 
         #region <方法>
         // 初始化
-        public void Init();
+        public void Init(ComponentModule _componentModule);
         // 销毁
         public void Dispose();
         #endregion <方法>

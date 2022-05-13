@@ -15,6 +15,9 @@
 
 
 
+using Assets.Script.Engine.Ecs.Core;
+using Assets.Script.Engine.Ecs.Core.Module;
+
 namespace Assets.Script.Engine.Ecs.Interface
 {
     /// <summary>
@@ -26,16 +29,15 @@ namespace Assets.Script.Engine.Ecs.Interface
         #endregion <属性>
 
         #region <方法>
-        public  void HandleAction();
-        
+        // 处理action
+        public  void ProcessAction(InputAction action);
+        // 更新
+        public void Excute(float delta, ComponentModule module);
         //// 处理消息
         //public  void HandleMessage(Message message);
         //// 处理帧事件
         //public void HandleFrame(FrameEvent frameEvent);
-        // 更新
-        public void Tick(float dt);
-        // 执行
-        public void Excute();
+
         #endregion <方法>
 
         #region <事件>

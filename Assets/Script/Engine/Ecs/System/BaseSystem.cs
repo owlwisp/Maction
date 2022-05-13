@@ -15,6 +15,8 @@
 
 
 using Assets.Script.Engine.Ecs.Const;
+using Assets.Script.Engine.Ecs.Core;
+using Assets.Script.Engine.Ecs.Core.Module;
 using Assets.Script.Engine.Ecs.Interface;
 
 namespace Assets.Script.Engine.Ecs.System
@@ -34,34 +36,33 @@ namespace Assets.Script.Engine.Ecs.System
         #endregion <属性>
 
         #region <方法>
+        
         // 处理action
-        public virtual void HandleAction()
+        public virtual void ProcessAction(InputAction action)
         {
 
         }
         
+        public void Excute(float delta, ComponentModule module)
+        {
+            throw new global::System.NotImplementedException();
+        }
+
+
+
         //// 处理消息
         //public virtual void HandleMessage(Message message)
         //{
-            
+
         //}
 
         //// 处理帧事件
         //public virtual void HandleFrame(FrameEvent frameEvent)
         //{
-            
+
         //}
 
-        // 更新
-        public virtual void Tick(float dt)
-        {
-            
-        }
 
-        public void Excute()
-        {
-            throw new global::System.NotImplementedException();
-        }
 
         #endregion <方法>
 

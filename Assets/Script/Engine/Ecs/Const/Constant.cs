@@ -23,6 +23,24 @@ namespace Assets.Script.Engine.Ecs.Const
     {
         #region <属性>
         kNone = 0,
+        // 输入事件系统
+        kGameInputSystem = 1,
+
+        #endregion <属性>
+    }
+    /// <summary>
+    /// system 类型
+    /// </summary>
+    public enum BattleResultType 
+    {
+        #region <属性>
+        kNone = 0,
+        // 成功
+        kSuccess = 1,
+
+        // 失败
+        kFail = 2,
+
 
         #endregion <属性>
     }

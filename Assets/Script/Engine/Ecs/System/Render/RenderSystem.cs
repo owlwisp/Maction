@@ -1,12 +1,12 @@
 #region << 文 件 注 释 >>
 /*----------------------------------------------------------------
  * 公司名称：TuYooGame
- * 命名空间：Assets.Script.Engine.Ecs.Component.Logic
- * 文件名：GameInputComponent
+ * 命名空间：Assets.Script.Engine.Ecs.System.Render
+ * 文件名：RenderSystem
  * 
  * 创建者：owlwisp
  * 电子邮箱：owlwisp@163.com
- * 创建时间：2022/5/11 18:1:1
+ * 创建时间：2022/5/13 15:42:5
  * 描述：
  *
  * ---------------------------------------------------------------*/
@@ -14,21 +14,20 @@
 #endregion << 文 件 注 释 >>
 
 
-namespace Assets.Script.Engine.Ecs.Component.Logic
+namespace Assets.Script.Engine.Ecs.System.Render
 {
     /// <summary>
-    /// 健康组件
+    /// 效果系统
     /// </summary>
-    public class GameInputComponent : BaseComponent
+    public class RenderSystem : BaseSystem
     {
         #region <属性>
-
-        
         #endregion <属性>
 
         #region <方法>
-        public string GetType(){
-            return "GameInputComponent";
+        public string GetType()
+        {
+            return "RenderSystem";
         }
         #endregion <方法>
 

@@ -2,11 +2,11 @@
 /*----------------------------------------------------------------
  * 公司名称：TuYooGame
  * 命名空间：Assets.Script.Engine.Ecs.Component.Logic
- * 文件名：TimeComponent
+ * 文件名：EffectComponent
  * 
  * 创建者：owlwisp
  * 电子邮箱：owlwisp@163.com
- * 创建时间：2022/5/12 15:11:31
+ * 创建时间：2022/5/11 18:1:12
  * 描述：
  *
  * ---------------------------------------------------------------*/
@@ -17,9 +17,9 @@
 namespace Assets.Script.Engine.Ecs.Component.Logic
 {
     /// <summary>
-    /// 时间 相关组件
+    /// 伤害 相关组件
     /// </summary>
-    public class TimeComponent : BaseComponent
+    public class EffectComponent : BaseComponent
     {
         #region <属性>
 
@@ -27,12 +27,11 @@ namespace Assets.Script.Engine.Ecs.Component.Logic
         #endregion <属性>
 
         #region <方法>
-        public TimeComponent(int id , int entityId):base(id, entityId)
-        {
-
+        public EffectComponent(int id , int entityId):base(id, entityId){
+            
         }
         public new string GetType(){
-            return "TimeComponent";
+            return "EffectComponent";
         }
         #endregion <方法>
 

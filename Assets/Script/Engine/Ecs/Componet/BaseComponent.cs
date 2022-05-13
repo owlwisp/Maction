@@ -29,14 +29,21 @@ namespace Assets.Script.Engine.Ecs.Component
         // 归属的entity的id
         public int EntityId { get; set; }
 
-        string IComponent.GetType()
-        {
-            throw new global::System.NotImplementedException();
-        }
 
         #endregion <属性>
 
         #region <方法>
+        // 构造函数
+        public BaseComponent(int id , int entityId)
+        {
+            Id = id;
+            EntityId = entityId;
+        }
+
+        public new string GetType()
+        {
+            throw new global::System.NotImplementedException();
+        }
         #endregion <方法>
 
         #region <事件>

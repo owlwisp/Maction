@@ -2,11 +2,11 @@
 /*----------------------------------------------------------------
  * 公司名称：TuYooGame
  * 命名空间：Assets.Script.Engine.Ecs.Component.Logic
- * 文件名：TimeComponent
+ * 文件名：SkillComponent
  * 
  * 创建者：owlwisp
  * 电子邮箱：owlwisp@163.com
- * 创建时间：2022/5/12 15:11:31
+ * 创建时间：2022/5/13 16:3:14
  * 描述：
  *
  * ---------------------------------------------------------------*/
@@ -17,9 +17,9 @@
 namespace Assets.Script.Engine.Ecs.Component.Logic
 {
     /// <summary>
-    /// 时间 相关组件
+    /// 技能相关组件
     /// </summary>
-    public class TimeComponent : BaseComponent
+    public class SkillComponent : BaseComponent
     {
         #region <属性>
 
@@ -27,12 +27,13 @@ namespace Assets.Script.Engine.Ecs.Component.Logic
         #endregion <属性>
 
         #region <方法>
-        public TimeComponent(int id , int entityId):base(id, entityId)
+        // 构造函数
+        public SkillComponent(int id , int entityId):base(id, entityId)
         {
-
         }
+        
         public new string GetType(){
-            return "TimeComponent";
+            return "SkillComponent";
         }
         #endregion <方法>
 

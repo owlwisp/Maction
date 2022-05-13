@@ -29,21 +29,30 @@ namespace Assets.Script.Engine.Ecs.Core.Module
         #region <属性>
         // 基础大小
         private int _baseSize = 0;
+        private int _extraSize = 0;
   
         // 当前注册的基础组件
         private Dictionary< string, List<BaseComponent>> _components;
 
-        // 当前注册的额外组件
-        private Dictionary< string, List<BaseComponent>> _extraComponents;
-        
+        // 按人存储的组件
+        //private Dictionary<int, Dictionary<string, BaseComponent>> _
+
+        // // 当前注册的额外组件
+        // private Dictionary< string, List<BaseComponent>> _extraComponents;
+
         #endregion <属性>
 
         #region <方法>
+        //设置容器大小
+        public void SetSize(int size, int extraSize = 2)
+        {
+            _baseSize = size;
+            _extraSize = extraSize;
+        }
         // 初始化
-        public void Init()
+        public void Init(ComponentModule _componentModule)
         {
             _components = new Dictionary<string, List<BaseComponent>>();
-            _extraComponents = new Dictionary<string, List<BaseComponent>>();
         }
 
         // 增加基础组件
@@ -56,39 +65,24 @@ namespace Assets.Script.Engine.Ecs.Core.Module
             
             if (!_components.ContainsKey(component.GetType()))
             {
-                _components.Add(component.GetType(), new List<BaseComponent>());
+                _components.Add(component.GetType(), new List<BaseComponent>(_baseSize + _extraSize));
             }
             
             _components[component.GetType()].Add(component);
         }
-        // 增加额外组件
-        public void AddExtraComponent(BaseComponent component)
-        {
-            if (component == null)
-            {
-                return;
-            }
 
-            if (!_extraComponents.ContainsKey(component.GetType()))
-            {
-                _extraComponents.Add(component.GetType(), new List<BaseComponent>());
-            }
-            
-            _extraComponents[component.GetType()].Add(component);
-        }
-        // 移除额外组件
-        public void RemoveExtraComponent(BaseComponent component)
+
+        // 获取type类型的组件
+        public List<BaseComponent> GetComponents(string type)
         {
-            if (component == null)
+            if (_components.ContainsKey(type))
             {
-                return;
+                return _components[type];
             }
-            if (_extraComponents.ContainsKey(component.GetType()))
-            {
-                _extraComponents[component.GetType()].Remove(component);
-            }
+            return null;
         }
 
+    
         // 清除组件
         public void Clear()
         {

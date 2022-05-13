@@ -14,6 +14,8 @@
 #endregion << 文 件 注 释 >>
 
 
+using System.Collections.Generic;
+using Assets.Script.Engine.Ecs.Entity;
 using Assets.Script.Engine.Ecs.Interface;
 
 namespace Assets.Script.Engine.Ecs.Core.Module
@@ -34,7 +36,7 @@ namespace Assets.Script.Engine.Ecs.Core.Module
 
         #region <方法>
         // 初始化
-        public void Init()
+        public void Init(ComponentModule _componentModule)
         {
             _entityList = new List<BaseEntity>();
             _extraEntityList = new List<BaseEntity>();

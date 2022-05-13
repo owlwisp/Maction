@@ -14,6 +14,7 @@
 #endregion << 文 件 注 释 >>
 
 
+using Assets.Script.Engine.Ecs.Const;
 using Assets.Script.Engine.Ecs.Core.Module;
 
 
@@ -29,65 +30,63 @@ namespace Assets.Script.Engine.Ecs.Core
         private int _count ;
 
 
-        // 实体模块
-        private EntityModule _entityModule;
-        // 组件模块
-        private ComponentModule _componentModule;
-        // 系统模块
-        private SystemModule _systemModule;
-        // 统一处理模块
-        private UnitilyModule _unitilyModule;
+
+        // 逻辑世界
+        private LogicWorld _logicWorld;
+        // 渲染世界
+        private RendererWolrd _renderWorld;
         
         // 是否开启时间更新
         bool _isUpdate = false;
 
-
-
-        
         #endregion <属性>
 
         #region <方法>
         // 初始化
         public void Init()
         {
-            _entityModule = new EntityModule();
-            _componentModule = new ComponentModule();
-            _systemModule = new SystemModule();
-            _unitilyModule = new UnitilyModule();
-
-            _entityModule.Init();
-            _componentModule.Init();
-            _systemModule.Init();
-            _unitilyModule.Init();
+            _logicWorld = new LogicWorld();
+            _renderWorld = new RendererWolrd();
 
         }
 
         // 释放
         public void Dispose()
         {
-            _entityModule.Dispose();
-            _componentModule.Dispose();
-            _systemModule.Dispose();
-            _unitilyModule.Dispose();
+            _logicWorld.Dispose();
+            _renderWorld.Dispose();
+        }
 
-            _entityModule = null;
-            _componentModule = null;
-            _systemModule = null;
-            _unitilyModule = null;
+        // 为logicWorld增加action
+        public void AddAction(InputAction action)
+        {
+            _logicWorld.AddAction(action);
         }
 
         // 更新函数
-        public void Update()
+        public void Update(float delta)
         {
             // 更新系统
             if (_isUpdate)
             {
-                // for (int i = 0; i < _count; i++)
-                // {
-                //     _entities[i].Update();
-                // }
+                if (BattleResultType.kNone == UpdateLogic(delta)){
+                    UpdateRender(delta);
+                }
             }
         }
+
+        // 更新逻辑
+        public BattleResultType UpdateLogic(float delta)
+        {
+            return _logicWorld.Tick(delta);
+        }
+
+        // 更新渲染
+        public void UpdateRender(float delta)
+        {
+            _logicWorld.Tick(delta);
+        }
+
         #endregion <方法>
 
         #region <事件>

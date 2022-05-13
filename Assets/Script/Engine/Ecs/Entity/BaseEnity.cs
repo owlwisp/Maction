@@ -23,6 +23,10 @@ namespace Assets.Script.Engine.Ecs.Entity
     /// </summary>
     public class BaseEntity : IEntity
     {
+        public BaseEntity(int id)
+        {
+            Id = id;
+        }
         #region <属性>
         //唯一id
         public int Id { get; set; }
