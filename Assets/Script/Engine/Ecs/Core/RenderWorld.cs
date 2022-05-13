@@ -2,7 +2,7 @@
 /*----------------------------------------------------------------
  * 公司名称：TuYooGame
  * 命名空间：Assets.Script.Engine.Ecs.Core
- * 文件名：RendererWolrd
+ * 文件名：RenderWolrd
  * 
  * 创建者：owlwisp
  * 电子邮箱：owlwisp@163.com
@@ -21,7 +21,7 @@ namespace Assets.Script.Engine.Ecs.Core
     /// <summary>
     /// 渲染世界
     /// </summary>
-    public class RendererWolrd
+    public class RenderWolrd
     {
         #region <属性>
         #endregion <属性>

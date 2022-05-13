@@ -1,7 +1,7 @@
 #region << 文 件 注 释 >>
 /*----------------------------------------------------------------
  * 公司名称：TuYooGame
- * 命名空间：Assets.Script.Engine.Ecs.Component.Logic
+ * 命名空间：Assets.Script.Engine.Ecs.Component.Render
  * 文件名：AudioComponent
  * 
  * 创建者：owlwisp
@@ -14,7 +14,7 @@
 #endregion << 文 件 注 释 >>
 
 
-namespace Assets.Script.Engine.Ecs.Component.Logic
+namespace Assets.Script.Engine.Ecs.Component.Render
 {
     /// <summary>
     /// 音效相关组件

@@ -34,7 +34,7 @@ namespace Assets.Script.Engine.Ecs.Core
         // 逻辑世界
         private LogicWorld _logicWorld;
         // 渲染世界
-        private RendererWolrd _renderWorld;
+        private RenderWolrd _renderWorld;
         
         // 是否开启时间更新
         bool _isUpdate = false;
@@ -46,7 +46,7 @@ namespace Assets.Script.Engine.Ecs.Core
         public void Init()
         {
             _logicWorld = new LogicWorld();
-            _renderWorld = new RendererWolrd();
+            _renderWorld = new RenderWolrd();
 
         }
 

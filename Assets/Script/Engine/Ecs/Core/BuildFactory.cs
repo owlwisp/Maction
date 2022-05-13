@@ -16,6 +16,7 @@
 
 using Assets.Script.Engine.Ecs.Component;
 using Assets.Script.Engine.Ecs.Component.Logic;
+using Assets.Script.Engine.Ecs.Component.Render;
 using Assets.Script.Engine.Ecs.Core.Module;
 using Assets.Script.Engine.Ecs.Entity;
 using Assets.Script.Engine.Ecs.System;
