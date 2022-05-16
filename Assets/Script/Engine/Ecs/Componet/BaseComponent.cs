@@ -29,6 +29,10 @@ namespace Assets.Script.Engine.Ecs.Component
         // 归属的entity的id
         public int EntityId { get; set; }
 
+        // 是否激活
+        public bool IsActive { get; set; }
+
+
 
         #endregion <属性>
 

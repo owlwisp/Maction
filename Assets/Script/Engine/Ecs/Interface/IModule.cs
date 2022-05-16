@@ -29,7 +29,7 @@ namespace Assets.Script.Engine.Ecs.Interface
 
         #region <方法>
         // 初始化
-        public void Init(ComponentModule _componentModule);
+        public void Init();
         // 销毁
         public void Dispose();
         #endregion <方法>

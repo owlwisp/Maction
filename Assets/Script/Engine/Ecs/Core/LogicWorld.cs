@@ -56,11 +56,11 @@ namespace Assets.Script.Engine.Ecs.Core
             _refereeModule = new RefereeModule();
 
             
-            _componentModule.Init(_componentModule);
-            _entityModule.Init(_componentModule);
-            _systemModule.Init(_componentModule);
-            _unitilyModule.Init(_componentModule);
-            _refereeModule.Init(_componentModule);
+            _componentModule.Init();
+            _entityModule.Init();
+            _systemModule.Init();
+            _unitilyModule.Init();
+            _refereeModule.Init();
 
         }
 
@@ -118,8 +118,9 @@ namespace Assets.Script.Engine.Ecs.Core
         // 更新系统
         private void ProcessSystem(float delta)
         {
-            _systemModule.Tick(delta);
+            _systemModule.Tick(delta, _componentModule.GetComponentsGroup());
         }
+
         // 清理
         public void Clear()
         {

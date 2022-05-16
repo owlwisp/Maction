@@ -15,6 +15,8 @@
 
 
 
+using System.Collections.Generic;
+using Assets.Script.Engine.Ecs.Component;
 using Assets.Script.Engine.Ecs.Core;
 using Assets.Script.Engine.Ecs.Core.Module;
 
@@ -32,7 +34,7 @@ namespace Assets.Script.Engine.Ecs.Interface
         // 处理action
         public  void ProcessAction(InputAction action);
         // 更新
-        public void Excute(float delta, ComponentModule module);
+        public void Excute(float delta, Dictionary< string, List<BaseComponent>> components);
         //// 处理消息
         //public  void HandleMessage(Message message);
         //// 处理帧事件

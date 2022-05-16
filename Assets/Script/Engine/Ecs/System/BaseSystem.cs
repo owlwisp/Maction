@@ -14,6 +14,8 @@
 #endregion << 文 件 注 释 >>
 
 
+using System.Collections.Generic;
+using Assets.Script.Engine.Ecs.Component;
 using Assets.Script.Engine.Ecs.Const;
 using Assets.Script.Engine.Ecs.Core;
 using Assets.Script.Engine.Ecs.Core.Module;
@@ -29,7 +31,7 @@ namespace Assets.Script.Engine.Ecs.System
         #region <属性>
 
         // 系统类型
-        SystemType Type{ get; set; }
+        public SystemType Type{ get; set; }
         // 顺序
         public int Order { get; set; }
 
@@ -43,11 +45,12 @@ namespace Assets.Script.Engine.Ecs.System
 
         }
         
-        public void Excute(float delta, ComponentModule module)
+        public void Excute(float delta, Dictionary< string, List<BaseComponent>> components)
         {
             throw new global::System.NotImplementedException();
         }
 
+        
 
 
         //// 处理消息

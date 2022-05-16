@@ -31,7 +31,7 @@ namespace Assets.Script.Engine.Ecs.Core.Module
 
         #region <方法>
         // 初始化
-        public void Init(ComponentModule _componentModule)
+        public void Init()
         {
 
         }

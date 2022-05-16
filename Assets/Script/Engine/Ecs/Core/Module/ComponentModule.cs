@@ -32,14 +32,8 @@ namespace Assets.Script.Engine.Ecs.Core.Module
         private int _extraSize = 0;
   
         // 当前注册的基础组件
-        private Dictionary< string, List<BaseComponent>> _components;
-
-        // 按人存储的组件
-        //private Dictionary<int, Dictionary<string, BaseComponent>> _
-
-        // // 当前注册的额外组件
-        // private Dictionary< string, List<BaseComponent>> _extraComponents;
-
+        private Dictionary< string, List<BaseComponent>> _componentsGroup;
+        private Dictionary<int, List<BaseComponent>> _components;
         #endregion <属性>
 
         #region <方法>
@@ -50,43 +44,53 @@ namespace Assets.Script.Engine.Ecs.Core.Module
             _extraSize = extraSize;
         }
         // 初始化
-        public void Init(ComponentModule _componentModule)
+        public void Init()
         {
-            _components = new Dictionary<string, List<BaseComponent>>();
+            _components = new Dictionary<int, List<BaseComponent>>();
+            _componentsGroup = new Dictionary<string, List<BaseComponent>>();
         }
 
+        // 获取所有组件组
+        public Dictionary<string, List<BaseComponent>> GetComponentsGroup()
+        {
+            return _componentsGroup;
+        }
         // 增加基础组件
         public void AddComponent(BaseComponent component)
         {
-            if (component == null)
+            if (!_components.ContainsKey(component.EntityId))
             {
-                return;
+                _components.Add(component.EntityId, new List<BaseComponent>());
+            }
+            _components[component.EntityId].Add(component);
+
+
+            if (!_componentsGroup.ContainsKey(component.GetType()))
+            {
+                _componentsGroup.Add(component.GetType(), new List<BaseComponent>());
             }
             
-            if (!_components.ContainsKey(component.GetType()))
-            {
-                _components.Add(component.GetType(), new List<BaseComponent>(_baseSize + _extraSize));
-            }
-            
-            _components[component.GetType()].Add(component);
+            _componentsGroup[component.GetType()].Add(component);
+
         }
 
-
-        // 获取type类型的组件
-        public List<BaseComponent> GetComponents(string type)
+        // 设置某个人的组件是否激活
+        public void SetActive(int entityId, bool active)
         {
-            if (_components.ContainsKey(type))
+            if (_components.ContainsKey(entityId))
             {
-                return _components[type];
+                foreach (var component in _components[entityId])
+                {
+                    component.IsActive = active;
+                }
             }
-            return null;
         }
 
-    
         // 清除组件
         public void Clear()
         {
             _components.Clear();
+            _componentsGroup.Clear();
         }
 
         // 销毁

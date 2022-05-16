@@ -15,6 +15,8 @@
 
 
 using System.Collections.Generic;
+using Assets.Script.Engine.Ecs.Component;
+using Assets.Script.Engine.Ecs.Const;
 using Assets.Script.Engine.Ecs.Interface;
 using Assets.Script.Engine.Ecs.System;
 
@@ -33,40 +35,36 @@ namespace Assets.Script.Engine.Ecs.Core.Module
         // 顺序链表
         private List<BaseSystem> _systemList;
         // 字典
-        private Dictionary<int, BaseSystem> _systemDict;
+        private Dictionary<SystemType, BaseSystem> _systemDict;
 
 
-        // 组件模块
-        private ComponentModule _componentModule ;
+    
         #endregion <属性>
 
         #region <方法>
          // 初始化
-        public void Init(ComponentModule _componentModule)
+        public void Init()
         {
             _systemList = new List<BaseSystem>();
-            _systemDict = new Dictionary<int, BaseSystem>();
-            _componentModule = _componentModule;
+            _systemDict = new Dictionary<SystemType, BaseSystem>();
         }
         // 销毁
         public void Dispose()
         {
-            _systemList.Clear();
-            //_systemDict.Clear();
-            _componentModule = null;
+            ClearSystem();
         }
 
         // 添加系统
         public void AddSystem(BaseSystem system)
         {
             _systemList.Add(system);
-            //_systemDict.Add(system.GetType(), system);
+            _systemDict[system.Type] =  system;
         }
         // 清除所有系统
         public void ClearSystem()
         {
             _systemList.Clear();
-            //_systemDict.Clear();
+            _systemDict.Clear();
         }
         // 对系统使用order排序
         public void SortSystem()
@@ -93,27 +91,27 @@ namespace Assets.Script.Engine.Ecs.Core.Module
         public void ProcessAction(InputAction action)
         {
             // 这里处理输入事件
-            if(_systemDict.ContainsKey((int)action.Type))
+            if(_systemDict.ContainsKey(action.Type))
             {
-                _systemDict[(int)action.Type].ProcessAction(action);
+                _systemDict[action.Type].ProcessAction(action);
             }
         }
 
         // 时间更新
-        public void Tick(float delta)
+        public void Tick(float delta, Dictionary<string, List<BaseComponent>> components)
         {
             // 这里处理时间更新
-            Excute( delta);
+            Excute( delta, components);
         }
 
         // 执行system
-        public void Excute(float delta)
+        public void Excute(float delta, Dictionary< string, List<BaseComponent>> components)
         {
             // RecordTime();
             // 遍历执行systemList
             foreach (var system in _systemList)
             {
-                system.Excute(delta, _componentModule);
+                system.Excute(delta, components);
             }
 
             // CalculateTime();

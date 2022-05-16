@@ -74,29 +74,27 @@ namespace Assets.Script.Engine.Ecs.Core
                 case "Time":
                     component = new TimeComponent(id, EntityId);
                     break;
+                case "Render":
+                    component = new RenderComponent(id, EntityId);
+                    break;
+                case "Logic":
+                    component = new LogicComponent(id, EntityId);
+                    break;
+                case "Effect":
+                    component = new EffectComponent(id, EntityId);
+                    break;
+                case "Skill":
+                    component = new SkillComponent(id, EntityId);
+                    break;
+                case "Ai":
+                    component = new AiComponent(id, EntityId);
+                    break;
 
-
-                // case "Render":
-                //     component = new RenderComponent(id, EntityId);
-                //     break;
-                // case "Logic":
-                //     component = new LogicComponent(id);
-                //     break;
                 // case "Collision":
                 //     component = new CollisionComponent(id);
                 //     break;
                 // case "Camera":
                 //     component = new CameraComponent(id);
-                //     break;
-
-                // case "Effect":
-                //     component = new EffectComponent(id);
-                //     break;
-                // case "Skill":
-                //     component = new SkillComponent(id);
-                //     break;
-                // case "Ai":
-                //     component = new AiComponent(id);
                 //     break;
                 // case "Buff":
                 //     component = new BuffComponent(id);
@@ -124,7 +122,7 @@ namespace Assets.Script.Engine.Ecs.Core
                 //     break;
            
             }
-            return component  ;     
+            return component;     
         }
         // 创建实体
         static public BaseEntity CreateEntity(int id)
@@ -168,7 +166,6 @@ namespace Assets.Script.Engine.Ecs.Core
                 case "Time":
                     system = new TimeSystem();
                     break;
-
                 case "Effect":
                     system = new EffectSystem();
                     break;

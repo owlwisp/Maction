@@ -28,8 +28,9 @@ namespace Assets.Script.Engine.Ecs.Component.Logic
 
         #region <方法>
         public AnimationComponent(int id , int entityId):base(id, entityId){
-            
+
         }
+        
         public new string GetType(){
             return "AnimationComponent";
         }

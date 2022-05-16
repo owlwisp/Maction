@@ -1,7 +1,7 @@
 #region << 文 件 注 释 >>
 /*----------------------------------------------------------------
  * 公司名称：TuYooGame
- * 命名空间：Assets.Script.Engine.Ecs.Component.Logic
+ * 命名空间：Assets.Script.Engine.Ecs.Component.Render
  * 文件名：RenderComponent
  * 
  * 创建者：owlwisp
@@ -14,7 +14,7 @@
 #endregion << 文 件 注 释 >>
 
 
-namespace Assets.Script.Engine.Ecs.Component.Logic
+namespace Assets.Script.Engine.Ecs.Component.Render
 {
     /// <summary>
     /// 渲染相关组件
@@ -28,7 +28,7 @@ namespace Assets.Script.Engine.Ecs.Component.Logic
 
         #region <方法>
         public RenderComponent(int id , int entityId):base(id, entityId){
-            
+
         }
         public new string GetType(){
             return "RenderComponent";
