@@ -1,12 +1,12 @@
 #region << 文 件 注 释 >>
 /*----------------------------------------------------------------
  * 公司名称：TuYooGame
- * 命名空间：Assets.Script.Engine.Ecs.Core.Module
- * 文件名：RefereeModule
+ * 命名空间：Assets.Script.Engine.Ecs.Core.Module.Logic
+ * 文件名：FrameModule
  * 
  * 创建者：owlwisp
  * 电子邮箱：owlwisp@163.com
- * 创建时间：2022/5/11 18:9:46
+ * 创建时间：2022/5/16 18:39:6
  * 描述：
  *
  * ---------------------------------------------------------------*/
@@ -17,16 +17,19 @@
 using Assets.Script.Engine.Ecs.Const;
 using Assets.Script.Engine.Ecs.Interface;
 
-namespace Assets.Script.Engine.Ecs.Core.Module
+namespace Assets.Script.Engine.Ecs.Core.Module.Logic
 {
     /// <summary>
-    /// 结果校验模块
+    /// 帧事件模块
     /// </summary>
-    public class RefereeModule : IModule
+    public class FrameModule : IModule
     {
         #region <属性>
         // 战斗结果
-        private BattleResultType _result;
+        private int _frameCount;
+
+        // 当前处理帧
+        private int _currentFrame;
         #endregion <属性>
 
         #region <方法>
@@ -46,13 +49,18 @@ namespace Assets.Script.Engine.Ecs.Core.Module
         public void Tick(float delta)
         {
         }
-
-        // 获取结果
-        public BattleResultType GetResult()
+        // 获取帧事件
+        public int GetFrameCount()
         {
-            return _result;
+            return _frameCount;
         }
 
+        // 获取当前帧数据
+        public int GetCurrentFrame()
+        {
+            return _currentFrame;
+        }
+ 
         #endregion <方法>
 
         #region <事件>

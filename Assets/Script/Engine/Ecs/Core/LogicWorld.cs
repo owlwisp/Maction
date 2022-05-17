@@ -37,6 +37,9 @@ namespace Assets.Script.Engine.Ecs.Core
         private UnitilyModule _unitilyModule;
         // 检验结果模块
         private RefereeModule _refereeModule;
+        // 帧事件模块
+        private FrameModule _frameModule;
+
 
         // 输入action 的队列
         private Queue<InputAction> _inputActionQueue;
@@ -54,6 +57,7 @@ namespace Assets.Script.Engine.Ecs.Core
             _systemModule = new SystemModule();
             _unitilyModule = new UnitilyModule();
             _refereeModule = new RefereeModule();
+            _frameModule = new FrameModule();
 
             
             _componentModule.Init();
@@ -61,6 +65,7 @@ namespace Assets.Script.Engine.Ecs.Core
             _systemModule.Init();
             _unitilyModule.Init();
             _refereeModule.Init();
+            _frameModule.Init();
 
         }
 
@@ -74,12 +79,14 @@ namespace Assets.Script.Engine.Ecs.Core
             _systemModule.Dispose();
             _unitilyModule.Dispose();
             _refereeModule.Dispose();
+            _frameModule.Dispose();
 
             _entityModule = null;
             _componentModule = null;
             _systemModule = null;
             _unitilyModule = null;
             _refereeModule = null;
+            _frameModule = null;
         }
 
         // 加入输入事件
@@ -98,8 +105,10 @@ namespace Assets.Script.Engine.Ecs.Core
             // 3. 检测战斗结果
             _refereeModule.Tick(delta);
             // 4. 写入log
+            // TODO: 是否要根据frame模块的事件来写入log，用于查找问题，或者生成复盘数据
             
             // 5. 处理给渲染层的帧事件
+            _frameModule.Tick(delta);
 
             // 6. 返回结果
             return _refereeModule.GetResult();
@@ -121,6 +130,17 @@ namespace Assets.Script.Engine.Ecs.Core
             _systemModule.Tick(delta, _componentModule.GetComponentsGroup());
         }
 
+        // 获取当前帧数
+        public int GetFrameCount()
+        {
+            return _frameModule.GetFrameCount();
+        }
+
+        // 获取当前帧数据
+        public List<FrameData> GetFrameData()
+        {
+            return _frameModule.GetFrameData();
+        }
         // 清理
         public void Clear()
         {

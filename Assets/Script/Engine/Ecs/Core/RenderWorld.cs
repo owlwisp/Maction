@@ -24,13 +24,65 @@ namespace Assets.Script.Engine.Ecs.Core
     public class RenderWolrd
     {
         #region <属性>
+        // 当前帧数
+        private int _frameCount;
+
+        // 音乐模块
+        private MusicModule _musicModule;
+        // 渲染实体模块
+        private RenderEntityModule _renderEntityModule;
+
+        // 是否跳过渲染
+        private bool _isSkipRender;
         #endregion <属性>
 
         #region <方法>
+        // 初始化
+        public void Init()
+        {
+            _frameCount = 0;
+            _musicModule = new MusicModule();
+            _renderEntityModule = new RenderEntityModule();
+            _musicModule.Init();
+            _renderEntityModule.Init();
+        }
+        // 释放
+        public void Dispose()
+        {
+            _musicModule.Dispose();
+            _renderEntityModule.Dispose();
+
+            _musicModule = null;
+            _renderEntityModule = null;
+        }
+
+        // 获取当前帧数
+        public int GetFrameCount()
+        {
+            return _frameCount;
+        }
         // 时间更新
         public void Tick(float delta)
         {
+            _renderEntityModule.Tick(delta);
+            _musicModule.Tick(delta);
 
+            if (_isSkipRender)
+            {
+                SkipRender();
+            }
+        }
+
+        // 跳过渲染
+        public void DisableSkipRender()
+        {
+            _isSkipRender = true;
+        }
+
+        // 禁止渲染
+        public void SkipRender()
+        {
+            
         }
 
         internal void Dispose()

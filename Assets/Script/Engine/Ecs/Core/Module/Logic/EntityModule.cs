@@ -1,7 +1,7 @@
 #region << 文 件 注 释 >>
 /*----------------------------------------------------------------
  * 公司名称：TuYooGame
- * 命名空间：Assets.Script.Engine.Ecs.Core.Module
+ * 命名空间：Assets.Script.Engine.Ecs.Core.Module.Logic
  * 文件名：EntityModule
  * 
  * 创建者：owlwisp
@@ -18,7 +18,7 @@ using System.Collections.Generic;
 using Assets.Script.Engine.Ecs.Entity;
 using Assets.Script.Engine.Ecs.Interface;
 
-namespace Assets.Script.Engine.Ecs.Core.Module
+namespace Assets.Script.Engine.Ecs.Core.Module.Logic
 {
     /// <summary>
     /// 实体模块

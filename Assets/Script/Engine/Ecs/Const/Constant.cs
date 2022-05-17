@@ -44,4 +44,21 @@ namespace Assets.Script.Engine.Ecs.Const
 
         #endregion <属性>
     }
+
+
+    /// <summary>
+    /// 战斗状态枚举
+    /// </summary>
+    public enum BattleStatus{
+            // 默认状态
+            kNone = 0,
+            // 战斗状态
+            kBattle,
+            // 等待渲染状态
+            kWaitRender,
+            // 战斗结果状态
+            kBattleResult,
+            // 战斗完成状态
+            kFinish
+        }
 }

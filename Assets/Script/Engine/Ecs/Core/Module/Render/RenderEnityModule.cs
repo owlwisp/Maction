@@ -1,12 +1,12 @@
 #region << 文 件 注 释 >>
 /*----------------------------------------------------------------
  * 公司名称：TuYooGame
- * 命名空间：Assets.Script.Engine.Ecs.Core.Module
- * 文件名：UnitilyModule
+ * 命名空间：Assets.Script.Engine.Ecs.Core.Module.Render
+ * 文件名：RenderEnityModule
  * 
  * 创建者：owlwisp
  * 电子邮箱：owlwisp@163.com
- * 创建时间：2022/5/11 18:38:26
+ * 创建时间：2022/5/17 11:31:44
  * 描述：
  *
  * ---------------------------------------------------------------*/
@@ -14,23 +14,29 @@
 #endregion << 文 件 注 释 >>
 
 
+using System.Collections.Generic;
+using Assets.Script.Engine.Ecs.Component;
 using Assets.Script.Engine.Ecs.Interface;
+using Unity.Collections;
 
-namespace Assets.Script.Engine.Ecs.Core.Module
+namespace Assets.Script.Engine.Ecs.Core.Module.Render
 {
     /// <summary>
-    /// 统一处理 模块
+    /// 渲染enity模块
     /// </summary>
-    public class UnitilyModule : IModule
+    public class RenderEnityModule : IModule
     {
         #region <属性>
+        // 储存渲染的实体的list
+        private List<RenderEntity> _renderEnityList ;
         #endregion <属性>
 
         #region <方法>
-         // 初始化
+
+          // 初始化
         public void Init()
         {
-            
+            _renderEnityList = new List<RenderEntity>();
         }
 
         // 销毁
@@ -38,6 +44,14 @@ namespace Assets.Script.Engine.Ecs.Core.Module
         {
             
         }
+         // 更新时间
+        public void Tick(float deltaTime)
+        {
+
+            
+        }
+
+
         #endregion <方法>
 
         #region <事件>
